@@ -254,196 +254,748 @@
     <script>
         const questions = [
     {
-    "question": "Selecione o nome, sobrenome e país dos clientes.",
-    "options": [
-        "SELECT nome, sobrenome, pais FROM clientes",
-        "SELECT * FROM clientes",
-        "SELECT nome, sobrenome FROM clientes",
-        "SELECT pais FROM clientes"
-    ],
-    "correct": 0
+        "question": "Selecione o nome, sobrenome e país dos clientes.",
+        "options": [
+            "SELECT nome, sobrenome, pais FROM clientes",
+            "SELECT * FROM clientes",
+            "SELECT nome, sobrenome FROM clientes",
+            "SELECT pais FROM clientes"
+        ],
+        "correct": 0
     },
     {
-    "question": "Selecione o nome, sobrenome e cargo dos empregados.",
-    "options": [
-        "SELECT nome, sobrenome, cargo FROM empregados",
-        "SELECT * FROM empregados",
-        "SELECT nome, cargo FROM empregados",
-        "SELECT sobrenome, cargo FROM empregados"
-    ],
-    "correct": 0
+        "question": "Selecione o nome, sobrenome e cargo dos empregados.",
+        "options": [
+            "SELECT nome, sobrenome, cargo FROM empregados",
+            "SELECT * FROM empregados",
+            "SELECT nome, cargo FROM empregados",
+            "SELECT sobrenome, cargo FROM empregados"
+        ],
+        "correct": 0
     },
     {
-    "question": "Selecione o código, cidade e país dos escritórios.",
-    "options": [
-        "SELECT codigo, cidade, pais FROM escritorios",
-        "SELECT * FROM escritorios",
-        "SELECT cidade, pais FROM escritorios",
-        "SELECT codigo, cidade FROM escritorios"
-    ],
-    "correct": 0
+        "question": "Selecione o código, cidade e país dos escritórios.",
+        "options": [
+            "SELECT codigo, cidade, pais FROM escritorios",
+            "SELECT * FROM escritorios",
+            "SELECT cidade, pais FROM escritorios",
+            "SELECT codigo, cidade FROM escritorios"
+        ],
+        "correct": 0
     },
     {
-    "question": "Como obter todos os clientes?",
-    "options": [
-        "SELECT * FROM clientes",
-        "SELECT nome, sobrenome FROM clientes",
-        "SELECT clientes FROM *",
-        "SELECT ALL FROM clientes"
-    ],
-    "correct": 0
+        "question": "Como obter todos os clientes?",
+        "options": [
+            "SELECT * FROM clientes",
+            "SELECT nome, sobrenome FROM clientes",
+            "SELECT clientes FROM *",
+            "SELECT ALL FROM clientes"
+        ],
+        "correct": 0
     },
     {
-    "question": "Como obter todos os empregados?",
-    "options": [
-        "SELECT * FROM empregados",
-        "SELECT nome, cargo FROM empregados",
-        "SELECT empregados FROM *",
-        "SELECT ALL FROM empregados"
-    ],
-    "correct": 0
+        "question": "Como obter todos os empregados?",
+        "options": [
+            "SELECT * FROM empregados",
+            "SELECT nome, cargo FROM empregados",
+            "SELECT empregados FROM *",
+            "SELECT ALL FROM empregados"
+        ],
+        "correct": 0
     },
     {
-    "question": "Como obter todos os escritórios?",
-    "options": [
-        "SELECT * FROM escritorios",
-        "SELECT codigo, cidade FROM escritorios",
-        "SELECT cidade, pais FROM escritorios",
-        "SELECT ALL FROM escritorios"
-    ],
-    "correct": 0
+        "question": "Como obter todos os escritórios?",
+        "options": [
+            "SELECT * FROM escritorios",
+            "SELECT codigo, cidade FROM escritorios",
+            "SELECT cidade, pais FROM escritorios",
+            "SELECT ALL FROM escritorios"
+        ],
+        "correct": 0
     },
     {
-    "question": "Como obter todos os produtos?",
-    "options": [
-        "SELECT * FROM produtos",
-        "SELECT nome, fabricante FROM produtos",
-        "SELECT produtos FROM *",
-        "SELECT ALL FROM produtos"
-    ],
-    "correct": 0
+        "question": "Como obter todos os produtos?",
+        "options": [
+            "SELECT * FROM produtos",
+            "SELECT nome, fabricante FROM produtos",
+            "SELECT produtos FROM *",
+            "SELECT ALL FROM produtos"
+        ],
+        "correct": 0
     },
     {
-    "question": "Gerar lista de clientes localizados nos Estados Unidos (USA).",
-    "options": [
-        "SELECT nome, sobrenome FROM clientes WHERE pais = 'USA'",
-        "SELECT nome, sobrenome FROM clientes WHERE pais <> 'USA'",
-        "SELECT * FROM clientes WHERE pais = 'USA'",
-        "SELECT nome FROM clientes WHERE pais = 'USA'"
-    ],
-    "correct": 0
+        "question": "Gerar lista de clientes localizados nos Estados Unidos (USA).",
+        "options": [
+            "SELECT nome, sobrenome FROM clientes WHERE pais = 'USA'",
+            "SELECT nome, sobrenome FROM clientes WHERE pais <> 'USA'",
+            "SELECT * FROM clientes WHERE pais = 'USA'",
+            "SELECT nome FROM clientes WHERE pais = 'USA'"
+        ],
+        "correct": 0
     },
     {
-    "question": "Clientes com limite de crédito superior a R$ 100.000.",
-    "options": [
-        "SELECT nome, sobrenome, pais FROM clientes WHERE limiteCredito > 100000",
-        "SELECT nome, sobrenome FROM clientes WHERE limiteCredito >= 100000",
-        "SELECT nome, sobrenome, pais FROM clientes WHERE limiteCredito < 100000",
-        "SELECT nome, sobrenome, pais FROM clientes WHERE limiteCredito = 100000"
-    ],
-    "correct": 0
+        "question": "Clientes com limite de crédito superior a R$ 100.000.",
+        "options": [
+            "SELECT nome, sobrenome, pais FROM clientes WHERE limiteCredito > 100000",
+            "SELECT nome, sobrenome FROM clientes WHERE limiteCredito >= 100000",
+            "SELECT nome, sobrenome, pais FROM clientes WHERE limiteCredito < 100000",
+            "SELECT nome, sobrenome, pais FROM clientes WHERE limiteCredito = 100000"
+        ],
+        "correct": 0
     },
     {
-    "question": "Selecionar nomes de empregados.",
-    "options": [
-        "SELECT nome FROM empregados",
-        "SELECT nome, sobrenome FROM empregados",
-        "SELECT * FROM empregados",
-        "SELECT cargo FROM empregados"
-    ],
-    "correct": 0
+        "question": "Selecionar nomes de empregados.",
+        "options": [
+            "SELECT nome FROM empregados",
+            "SELECT nome, sobrenome FROM empregados",
+            "SELECT * FROM empregados",
+            "SELECT cargo FROM empregados"
+        ],
+        "correct": 0
     },
     {
-    "question": "Listar código e cidade de escritórios localizados no Japão.",
-    "options": [
-        "SELECT codigo, cidade FROM escritorios WHERE pais = 'Japan'",
-        "SELECT codigo, cidade FROM escritorios WHERE pais <> 'Japan'",
-        "SELECT * FROM escritorios WHERE pais = 'Japan'",
-        "SELECT codigo, pais FROM escritorios WHERE cidade = 'Japan'"
-    ],
-    "correct": 0
+        "question": "Listar código e cidade de escritórios localizados no Japão.",
+        "options": [
+            "SELECT codigo, cidade FROM escritorios WHERE pais = 'Japan'",
+            "SELECT codigo, cidade FROM escritorios WHERE pais <> 'Japan'",
+            "SELECT * FROM escritorios WHERE pais = 'Japan'",
+            "SELECT codigo, pais FROM escritorios WHERE cidade = 'Japan'"
+        ],
+        "correct": 0
     },
     {
-    "question": "Listar código, cliente e data dos pedidos já entregues.",
-    "options": [
-        "SELECT codigo, cliente, dataPedido FROM pedidos WHERE status = 'entregue'",
-        "SELECT codigo, cliente, dataEntrega FROM pedidos WHERE status = 'entregue'",
-        "SELECT codigo, cliente, dataPedido FROM pedidos WHERE status <> 'entregue'",
-        "SELECT * FROM pedidos WHERE status = 'entregue'"
-    ],
-    "correct": 1
+        "question": "Listar código, cliente e data dos pedidos já entregues.",
+        "options": [
+            "SELECT codigo, cliente, dataPedido FROM pedidos WHERE status = 'entregue'",
+            "SELECT codigo, cliente, dataEntrega FROM pedidos WHERE status = 'entregue'",
+            "SELECT codigo, cliente, dataPedido FROM pedidos WHERE status <> 'entregue'",
+            "SELECT * FROM pedidos WHERE status = 'entregue'"
+        ],
+        "correct": 1
     },
     {
-    "question": "Mostrar nomes dos produtos cadastrados na categoria de código 5.",
-    "options": [
-        "SELECT nome FROM produtos WHERE categoria = 5",
-        "SELECT nome FROM produtos WHERE categoria <> 5",
-        "SELECT * FROM produtos WHERE categoria = 5",
-        "SELECT nome, fabricante FROM produtos WHERE categoria = 5"
-    ],
-    "correct": 0
+        "question": "Mostrar nomes dos produtos cadastrados na categoria de código 5.",
+        "options": [
+            "SELECT nome FROM produtos WHERE categoria = 5",
+            "SELECT nome FROM produtos WHERE categoria <> 5",
+            "SELECT * FROM produtos WHERE categoria = 5",
+            "SELECT nome, fabricante FROM produtos WHERE categoria = 5"
+        ],
+        "correct": 0
     },
     {
-    "question": "Mostrar pagamentos efetuados pelo cliente de código 114.",
-    "options": [
-        "SELECT * FROM pagamentos WHERE cliente = 114",
-        "SELECT * FROM pagamentos WHERE cliente <> 114",
-        "SELECT cliente, valor FROM pagamentos WHERE cliente = 114",
-        "SELECT * FROM pagamentos WHERE idCliente = 114"
-    ],
-    "correct": 3
+        "question": "Mostrar pagamentos efetuados pelo cliente de código 114.",
+        "options": [
+            "SELECT * FROM pagamentos WHERE cliente = 114",
+            "SELECT * FROM pagamentos WHERE cliente <> 114",
+            "SELECT cliente, valor FROM pagamentos WHERE cliente = 114",
+            "SELECT * FROM pagamentos WHERE idCliente = 114"
+        ],
+        "correct": 3
     },
     {
-    "question": "Mostrar data e valor dos pagamentos com valor >= R$ 100.000.",
-    "options": [
-        "SELECT dataPagamento, valor FROM pagamentos WHERE valor >= 100000",
-        "SELECT dataPagamento, valor FROM pagamentos WHERE valor > 100000",
-        "SELECT * FROM pagamentos WHERE valor >= 100000",
-        "SELECT dataPagamento, valor FROM pagamentos WHERE valor <= 100000"
-    ],
-    "correct": 0
+        "question": "Mostrar data e valor dos pagamentos com valor >= R$ 100.000.",
+        "options": [
+            "SELECT dataPagamento, valor FROM pagamentos WHERE valor >= 100000",
+            "SELECT dataPagamento, valor FROM pagamentos WHERE valor > 100000",
+            "SELECT * FROM pagamentos WHERE valor >= 100000",
+            "SELECT dataPagamento, valor FROM pagamentos WHERE valor <= 100000"
+        ],
+        "correct": 0
     },
     {
-    "question": "Listar código, cliente e data dos pedidos ainda não entregues.",
-    "options": [
-        "SELECT codigo, cliente, dataPedido FROM pedidos WHERE status <> 'entregue'",
-        "SELECT codigo, cliente, dataPedido FROM pedidos WHERE status = 'entregue'",
-        "SELECT * FROM pedidos WHERE status <> 'entregue'",
-        "SELECT codigo, cliente, dataPedido FROM pedidos WHERE status IS NULL"
-    ],
-    "correct": 0
+        "question": "Listar código, cliente e data dos pedidos ainda não entregues.",
+        "options": [
+            "SELECT codigo, cliente, dataPedido FROM pedidos WHERE status <> 'entregue'",
+            "SELECT codigo, cliente, dataPedido FROM pedidos WHERE status = 'entregue'",
+            "SELECT * FROM pedidos WHERE status <> 'entregue'",
+            "SELECT codigo, cliente, dataPedido FROM pedidos WHERE status IS NULL"
+        ],
+        "correct": 0
     },
     {
-    "question": "Listar clientes localizados fora dos Estados Unidos.",
-    "options": [
-        "SELECT nome, sobrenome, pais FROM clientes WHERE pais <> 'USA'",
-        "SELECT nome, sobrenome, pais FROM clientes WHERE pais = 'USA'",
-        "SELECT * FROM clientes WHERE pais <> 'USA'",
-        "SELECT nome, sobrenome FROM clientes WHERE pais <> 'USA'"
-    ],
-    "correct": 0
+        "question": "Listar clientes localizados fora dos Estados Unidos.",
+        "options": [
+            "SELECT nome, sobrenome, pais FROM clientes WHERE pais <> 'USA'",
+            "SELECT nome, sobrenome, pais FROM clientes WHERE pais = 'USA'",
+            "SELECT * FROM clientes WHERE pais <> 'USA'",
+            "SELECT nome, sobrenome FROM clientes WHERE pais <> 'USA'"
+        ],
+        "correct": 0
     },
     {
-    "question": "Clientes nos EUA com limite de crédito superior a R$ 100.000 usando operador lógico AND.",
-    "options": [
-        "SELECT nome, sobrenome FROM clientes WHERE pais = 'USA' AND limiteCredito > 100000",
-        "SELECT nome, sobrenome FROM clientes WHERE pais = 'USA' OR limiteCredito > 100000",
-        "SELECT nome, sobrenome FROM clientes WHERE pais <> 'USA' AND limiteCredito > 100000",
-        "SELECT nome, sobrenome FROM clientes WHERE pais = 'USA'"
-    ],
-    "correct": 0
+        "question": "Clientes nos EUA com limite de crédito superior a R$ 100.000 usando operador lógico AND.",
+        "options": [
+            "SELECT nome, sobrenome FROM clientes WHERE pais = 'USA' AND limiteCredito > 100000",
+            "SELECT nome, sobrenome FROM clientes WHERE pais = 'USA' OR limiteCredito > 100000",
+            "SELECT nome, sobrenome FROM clientes WHERE pais <> 'USA' AND limiteCredito > 100000",
+            "SELECT nome, sobrenome FROM clientes WHERE pais = 'USA'"
+        ],
+        "correct": 0
     },
     {
-    "question": "Selecionar nomes de vendedores que são chefiados pelo empregado 1102.",
-    "options": [
-        "SELECT nome FROM empregados WHERE chefe = 1102",
-        "SELECT nome FROM empregados WHERE chefe <> 1102",
-        "SELECT * FROM empregados WHERE chefe = 1102",
-        "SELECT nome, sobrenome FROM empregados WHERE chefe = 1102"
-    ],
-    "correct": 0
+        "question": "Selecionar nomes de vendedores que são chefiados pelo empregado 1102.",
+        "options": [
+            "SELECT nome FROM empregados WHERE chefe = 1102",
+            "SELECT nome FROM empregados WHERE chefe <> 1102",
+            "SELECT * FROM empregados WHERE chefe = 1102",
+            "SELECT nome, sobrenome FROM empregados WHERE chefe = 1102"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Listar clientes nos EUA com limite de crédito > 100.000 ou fora dos EUA com limite > 50.000.",
+        "options": [
+            "SELECT nome, sobrenome, pais, limiteCredito FROM clientes WHERE (pais = 'USA' AND limiteCredito > 100000) OR (pais <> 'USA' AND limiteCredito > 50000)",
+            "SELECT nome, sobrenome, pais, limiteCredito FROM clientes WHERE limiteCredito > 50000",
+            "SELECT nome, sobrenome, pais, limiteCredito FROM clientes WHERE pais = 'USA' OR limiteCredito > 50000",
+            "SELECT * FROM clientes WHERE pais = 'USA' AND limiteCredito > 100000"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Listar clientes com limite de crédito entre R$ 50.000 e R$ 80.000.",
+        "options": [
+            "SELECT nome, sobrenome, pais, limiteCredito FROM clientes WHERE limiteCredito BETWEEN 50000 AND 80000",
+            "SELECT nome, sobrenome, pais, limiteCredito FROM clientes WHERE limiteCredito > 50000 AND limiteCredito < 80000",
+            "SELECT * FROM clientes WHERE limiteCredito BETWEEN 50000 AND 80000",
+            "SELECT nome, sobrenome, pais FROM clientes WHERE limiteCredito BETWEEN 50000 AND 80000"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Mostrar nome e fabricante de produtos com preço de compra entre R$ 60 e R$ 70.",
+        "options": [
+            "SELECT nome, fabricante FROM produtos WHERE precoCompra BETWEEN 60 AND 70",
+            "SELECT nome, fabricante FROM produtos WHERE precoCompra > 60 AND precoCompra < 70",
+            "SELECT * FROM produtos WHERE precoCompra BETWEEN 60 AND 70",
+            "SELECT nome, fabricante FROM produtos WHERE precoCompra IN (60,70)"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Mostrar nome, fabricante e estoque de produtos com estoque < 500 ou > 7000.",
+        "options": [
+            "SELECT nome, fabricante, estoque FROM produtos WHERE estoque < 500 OR estoque > 7000",
+            "SELECT nome, fabricante, estoque FROM produtos WHERE estoque BETWEEN 500 AND 7000",
+            "SELECT * FROM produtos WHERE estoque < 500 OR estoque > 7000",
+            "SELECT nome, fabricante, estoque FROM produtos WHERE estoque NOT BETWEEN 500 AND 7000"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Clientes cujo sobrenome começa com 'Br'.",
+        "options": [
+            "SELECT nome, sobrenome FROM clientes WHERE sobrenome LIKE 'Br%'",
+            "SELECT nome, sobrenome FROM clientes WHERE sobrenome LIKE '%Br'",
+            "SELECT nome, sobrenome FROM clientes WHERE sobrenome LIKE '%Br%'",
+            "SELECT * FROM clientes WHERE sobrenome LIKE 'Br%'"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Clientes cujo nome contém o termo 'chrome'.",
+        "options": [
+            "SELECT nome FROM clientes WHERE nome LIKE '%chrome%'",
+            "SELECT nome FROM clientes WHERE nome LIKE 'chrome%'",
+            "SELECT nome FROM clientes WHERE nome LIKE '%chrome'",
+            "SELECT * FROM clientes WHERE nome LIKE '%chrome%'"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Clientes que ficam na avenida Baden.",
+        "options": [
+            "SELECT nome, endereco FROM clientes WHERE endereco LIKE '%Baden%'",
+            "SELECT nome, endereco FROM clientes WHERE endereco LIKE 'Baden%'",
+            "SELECT nome, endereco FROM clientes WHERE endereco LIKE '%Baden'",
+            "SELECT * FROM clientes WHERE endereco LIKE '%Baden%'"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Cliente com 'aa' no meio do nome para contato.",
+        "options": [
+            "SELECT nome, telefone FROM clientes WHERE contato LIKE '%aa%'",
+            "SELECT nome, telefone FROM clientes WHERE contato LIKE 'aa%'",
+            "SELECT nome, telefone FROM clientes WHERE contato LIKE '%aa'",
+            "SELECT * FROM clientes WHERE contato LIKE '%aa%'"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Produtos que são réplicas de veículos da Ford.",
+        "options": [
+            "SELECT nome FROM produtos WHERE nome LIKE '%Ford%'",
+            "SELECT nome FROM produtos WHERE nome NOT LIKE '%Ford%'",
+            "SELECT * FROM produtos WHERE nome LIKE '%Ford%'",
+            "SELECT nome, fabricante FROM produtos WHERE nome LIKE '%Ford%'"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Produtos que não são réplicas de veículos da Ford.",
+        "options": [
+            "SELECT nome FROM produtos WHERE nome NOT LIKE '%Ford%'",
+            "SELECT nome FROM produtos WHERE nome LIKE '%Ford%'",
+            "SELECT * FROM produtos WHERE nome NOT LIKE '%Ford%'",
+            "SELECT nome, fabricante FROM produtos WHERE nome NOT LIKE '%Ford%'"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Produtos de modelo-ano 2003.",
+        "options": [
+            "SELECT nome FROM produtos WHERE nome LIKE '%2003%'",
+            "SELECT nome FROM produtos WHERE nome NOT LIKE '%2003%'",
+            "SELECT * FROM produtos WHERE nome LIKE '%2003%'",
+            "SELECT nome, fabricante FROM produtos WHERE nome LIKE '%2003%'"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Produtos que não são de modelo-ano 2003.",
+        "options": [
+            "SELECT nome FROM produtos WHERE nome NOT LIKE '%2003%'",
+            "SELECT nome FROM produtos WHERE nome LIKE '%2003%'",
+            "SELECT * FROM produtos WHERE nome NOT LIKE '%2003%'",
+            "SELECT nome, fabricante FROM produtos WHERE nome NOT LIKE '%2003%'"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Clientes cuja terceira letra do nome é 'A'.",
+        "options": [
+            "SELECT nome FROM clientes WHERE nome LIKE '__A%'",
+            "SELECT nome FROM clientes WHERE nome LIKE '_A%'",
+            "SELECT nome FROM clientes WHERE nome LIKE 'A__%'",
+            "SELECT * FROM clientes WHERE nome LIKE '__A%'"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Clientes onde a terceira letra do nome é 'A' e quinta letra é 'O'.",
+        "options": [
+            "SELECT nome FROM clientes WHERE nome LIKE '__A_O%'",
+            "SELECT nome FROM clientes WHERE nome LIKE '__AO%'",
+            "SELECT nome FROM clientes WHERE nome LIKE '_A__O%'",
+            "SELECT * FROM clientes WHERE nome LIKE '__A_O%'"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Produtos das categorias 3 e 6 usando IN.",
+        "options": [
+            "SELECT nome FROM produtos WHERE categoria IN (3,6)",
+            "SELECT nome FROM produtos WHERE categoria NOT IN (3,6)",
+            "SELECT * FROM produtos WHERE categoria IN (3,6)",
+            "SELECT nome, fabricante FROM produtos WHERE categoria IN (3,6)"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Clientes com contato Jean, Carine ou Diego.",
+        "options": [
+            "SELECT nome, contato FROM clientes WHERE contato IN ('Jean','Carine','Diego')",
+            "SELECT nome, contato FROM clientes WHERE contato NOT IN ('Jean','Carine','Diego')",
+            "SELECT * FROM clientes WHERE contato IN ('Jean','Carine','Diego')",
+            "SELECT nome, contato FROM clientes WHERE contato = 'Jean' OR contato = 'Carine' OR contato = 'Diego'"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Clientes cujo país não é EUA, França ou Reino Unido.",
+        "options": [
+            "SELECT nome FROM clientes WHERE pais NOT IN ('USA','France','UK')",
+            "SELECT nome FROM clientes WHERE pais IN ('USA','France','UK')",
+            "SELECT * FROM clientes WHERE pais NOT IN ('USA','France','UK')",
+            "SELECT nome, pais FROM clientes WHERE pais NOT IN ('USA','France','UK')"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Escritórios nos EUA que não estão em Boston ou New York.",
+        "options": [
+            "SELECT * FROM escritorios WHERE pais = 'USA' AND cidade NOT IN ('Boston','NYC')",
+            "SELECT * FROM escritorios WHERE pais = 'USA' OR cidade NOT IN ('Boston','NYC')",
+            "SELECT * FROM escritorios WHERE pais = 'USA' AND cidade IN ('Boston','NYC')",
+            "SELECT * FROM escritorios WHERE pais <> 'USA' AND cidade NOT IN ('Boston','NYC')"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Empregados que não têm chefe.",
+        "options": [
+            "SELECT nome, cargo FROM empregados WHERE chefe IS NULL",
+            "SELECT nome, cargo FROM empregados WHERE chefe IS NOT NULL",
+            "SELECT * FROM empregados WHERE chefe IS NULL",
+            "SELECT nome FROM empregados WHERE chefe IS NULL"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Clientes que não têm representante de vendas.",
+        "options": [
+            "SELECT nome, pais FROM clientes WHERE representanteVendas IS NULL",
+            "SELECT nome, pais FROM clientes WHERE representanteVendas IS NOT NULL",
+            "SELECT * FROM clientes WHERE representanteVendas IS NULL",
+            "SELECT nome, pais FROM clientes WHERE representanteVendas = 0"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Clientes que têm estado cadastrado.",
+        "options": [
+            "SELECT nome, endereco, cidade, estado FROM clientes WHERE estado IS NOT NULL",
+            "SELECT nome, endereco, cidade, estado FROM clientes WHERE estado IS NULL",
+            "SELECT * FROM clientes WHERE estado IS NOT NULL",
+            "SELECT nome, endereco, cidade, estado FROM clientes WHERE estado = ''"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Mostrar nome dos produtos e preço sugerido, ordenando pelo preço sugerido.",
+        "options": [
+            "SELECT nome, precoSugerido FROM produtos ORDER BY precoSugerido ASC",
+            "SELECT nome, precoSugerido FROM produtos ORDER BY precoSugerido DESC",
+            "SELECT * FROM produtos ORDER BY precoSugerido ASC",
+            "SELECT nome, precoSugerido FROM produtos ORDER BY nome ASC"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Listar nome do produto e estoque, ordenando do maior para o menor.",
+        "options": [
+            "SELECT nome, estoque FROM produtos ORDER BY estoque DESC",
+            "SELECT nome, estoque FROM produtos ORDER BY estoque ASC",
+            "SELECT * FROM produtos ORDER BY estoque DESC",
+            "SELECT nome, estoque FROM produtos ORDER BY nome DESC"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Lista de clientes nos EUA com limite > 100.000, ordenado do maior para o menor.",
+        "options": [
+            "SELECT nome, sobrenome, limiteCredito FROM clientes WHERE pais = 'USA' AND limiteCredito > 100000 ORDER BY limiteCredito DESC",
+            "SELECT nome, sobrenome, limiteCredito FROM clientes WHERE pais = 'USA' AND limiteCredito > 100000 ORDER BY limiteCredito ASC",
+            "SELECT * FROM clientes WHERE pais = 'USA' AND limiteCredito > 100000 ORDER BY limiteCredito DESC",
+            "SELECT nome, sobrenome, limiteCredito FROM clientes WHERE pais = 'USA' AND limiteCredito > 100000"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Produtos com preço de compra entre R$ 60 e R$ 70, ordenados alfabeticamente.",
+        "options": [
+            "SELECT nome, fabricante, precoCompra FROM produtos WHERE precoCompra BETWEEN 60 AND 70 ORDER BY nome ASC",
+            "SELECT nome, fabricante, precoCompra FROM produtos WHERE precoCompra BETWEEN 60 AND 70 ORDER BY precoCompra ASC",
+            "SELECT * FROM produtos WHERE precoCompra BETWEEN 60 AND 70 ORDER BY nome ASC",
+            "SELECT nome, fabricante, precoCompra FROM produtos WHERE precoCompra BETWEEN 60 AND 70 ORDER BY fabricante ASC"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Nome e sobrenome dos empregados ordenados por nome e sobrenome.",
+        "options": [
+            "SELECT nome, sobrenome FROM empregados ORDER BY nome ASC, sobrenome ASC",
+            "SELECT nome, sobrenome FROM empregados ORDER BY sobrenome ASC, nome ASC",
+            "SELECT * FROM empregados ORDER BY nome, sobrenome",
+            "SELECT nome, sobrenome FROM empregados ORDER BY nome DESC, sobrenome DESC"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Clientes com estado cadastrado, ordenados por estado e cidade.",
+        "options": [
+            "SELECT nome, endereco, cidade, estado FROM clientes WHERE estado IS NOT NULL ORDER BY estado ASC, cidade ASC",
+            "SELECT nome, endereco, cidade, estado FROM clientes WHERE estado IS NOT NULL ORDER BY cidade ASC, estado ASC",
+            "SELECT * FROM clientes WHERE estado IS NOT NULL ORDER BY estado, cidade",
+            "SELECT nome, endereco, cidade, estado FROM clientes WHERE estado IS NOT NULL ORDER BY cidade DESC"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Listar produtos com preço sugerido reajustado em R$ 10.",
+        "options": [
+            "SELECT codigo, nome, precoSugerido, precoSugerido + 10 AS precoReajustado FROM produtos",
+            "SELECT codigo, nome, precoSugerido + 10 FROM produtos",
+            "SELECT codigo, nome, precoSugerido, precoSugerido * 10 FROM produtos",
+            "SELECT * FROM produtos"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Reajustar limite de crédito dos clientes em 20% e mostrar os limites atualizados.",
+        "options": [
+            "SELECT nome, pais, limiteCredito, limiteCredito * 1.2 AS limiteReajustado FROM clientes",
+            "SELECT nome, pais, limiteCredito + 20 AS limiteReajustado FROM clientes",
+            "SELECT nome, pais, limiteCredito * 0.2 AS limiteReajustado FROM clientes",
+            "SELECT * FROM clientes"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Encontrar menor valor pago pelo produto S10_1678.",
+        "options": [
+            "SELECT MIN(valor) FROM pagamentos WHERE produto = 'S10_1678'",
+            "SELECT MAX(valor) FROM pagamentos WHERE produto = 'S10_1678'",
+            "SELECT SUM(valor) FROM pagamentos WHERE produto = 'S10_1678'",
+            "SELECT AVG(valor) FROM pagamentos WHERE produto = 'S10_1678'"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Valor do produto mais caro e do mais barato comprados pela empresa.",
+        "options": [
+            "SELECT MAX(precoCompra), MIN(precoCompra) FROM produtos",
+            "SELECT SUM(precoCompra), AVG(precoCompra) FROM produtos",
+            "SELECT MAX(precoCompra), MIN(precoVenda) FROM produtos",
+            "SELECT MAX(precoSugerido), MIN(precoSugerido) FROM produtos"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Valor total recebido pela empresa.",
+        "options": [
+            "SELECT SUM(valor) FROM pagamentos",
+            "SELECT SUM(valor) FROM pedidos",
+            "SELECT COUNT(valor) FROM pagamentos",
+            "SELECT AVG(valor) FROM pagamentos"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Valor total recebido do cliente Baana Mini Imports (código 121).",
+        "options": [
+            "SELECT SUM(valor) FROM pagamentos WHERE cliente = 121",
+            "SELECT SUM(valor) FROM pagamentos WHERE cliente <> 121",
+            "SELECT SUM(valor) FROM pedidos WHERE cliente = 121",
+            "SELECT COUNT(valor) FROM pagamentos WHERE cliente = 121"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Quantidade total de produtos em estoque.",
+        "options": [
+            "SELECT SUM(estoque) FROM produtos",
+            "SELECT COUNT(estoque) FROM produtos",
+            "SELECT AVG(estoque) FROM produtos",
+            "SELECT MAX(estoque) FROM produtos"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Quantidade total pedida para o produto Ford Falcon (S12_3891).",
+        "options": [
+            "SELECT SUM(quantidade) FROM pedidos WHERE produto = 'S12_3891'",
+            "SELECT COUNT(quantidade) FROM pedidos WHERE produto = 'S12_3891'",
+            "SELECT SUM(estoque) FROM produtos WHERE codigo = 'S12_3891'",
+            "SELECT AVG(quantidade) FROM pedidos WHERE produto = 'S12_3891'"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Quantidade total em estoque dos produtos S10_4757, S10_4962 e S12_1108.",
+        "options": [
+            "SELECT SUM(estoque) FROM produtos WHERE codigo IN ('S10_4757','S10_4962','S12_1108')",
+            "SELECT COUNT(estoque) FROM produtos WHERE codigo IN ('S10_4757','S10_4962','S12_1108')",
+            "SELECT AVG(estoque) FROM produtos WHERE codigo IN ('S10_4757','S10_4962','S12_1108')",
+            "SELECT SUM(quantidade) FROM pedidos WHERE codigo IN ('S10_4757','S10_4962','S12_1108')"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Preço médio de venda do produto Ferrari Enzo (S12_1108).",
+        "options": [
+            "SELECT AVG(precoVenda) FROM pedidos WHERE produto = 'S12_1108'",
+            "SELECT AVG(precoCompra) FROM produtos WHERE codigo = 'S12_1108'",
+            "SELECT SUM(precoVenda) FROM pedidos WHERE produto = 'S12_1108'",
+            "SELECT COUNT(precoVenda) FROM pedidos WHERE produto = 'S12_1108'"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Preço médio pago pela empresa entre todos os produtos.",
+        "options": [
+            "SELECT AVG(precoCompra) FROM produtos",
+            "SELECT SUM(precoCompra) FROM produtos",
+            "SELECT AVG(precoSugerido) FROM produtos",
+            "SELECT COUNT(precoCompra) FROM produtos"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Quantidade de produtos com preço sugerido > 100.",
+        "options": [
+            "SELECT COUNT(*) FROM produtos WHERE precoSugerido > 100",
+            "SELECT SUM(precoSugerido) FROM produtos WHERE precoSugerido > 100",
+            "SELECT COUNT(precoSugerido) FROM produtos WHERE precoSugerido < 100",
+            "SELECT AVG(precoSugerido) FROM produtos WHERE precoSugerido > 100"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Quantidade de produtos com estoque superior a 5000 unidades.",
+        "options": [
+            "SELECT COUNT(*) FROM produtos WHERE estoque > 5000",
+            "SELECT SUM(estoque) FROM produtos WHERE estoque > 5000",
+            "SELECT COUNT(estoque) FROM produtos WHERE estoque < 5000",
+            "SELECT AVG(estoque) FROM produtos WHERE estoque > 5000"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Quantos clientes estão localizados nos EUA?",
+        "options": [
+            "SELECT COUNT(*) FROM clientes WHERE pais = 'USA'",
+            "SELECT SUM(limiteCredito) FROM clientes WHERE pais = 'USA'",
+            "SELECT COUNT(*) FROM clientes WHERE pais <> 'USA'",
+            "SELECT COUNT(nome) FROM clientes WHERE pais = 'USA'"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Quantos produtos estão nas categorias 3 ou 6?",
+        "options": [
+            "SELECT COUNT(*) FROM produtos WHERE categoria IN (3,6)",
+            "SELECT SUM(estoque) FROM produtos WHERE categoria IN (3,6)",
+            "SELECT COUNT(*) FROM produtos WHERE categoria NOT IN (3,6)",
+            "SELECT AVG(precoCompra) FROM produtos WHERE categoria IN (3,6)"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Quantos produtos representam réplicas de veículos da Ford?",
+        "options": [
+            "SELECT COUNT(*) FROM produtos WHERE nome LIKE '%Ford%'",
+            "SELECT COUNT(*) FROM produtos WHERE nome NOT LIKE '%Ford%'",
+            "SELECT SUM(estoque) FROM produtos WHERE nome LIKE '%Ford%'",
+            "SELECT AVG(precoCompra) FROM produtos WHERE nome LIKE '%Ford%'"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Mostrar lista de países em que a empresa possui clientes.",
+        "options": [
+            "SELECT DISTINCT pais FROM clientes",
+            "SELECT pais FROM clientes",
+            "SELECT pais FROM clientes GROUP BY pais",
+            "SELECT pais FROM clientes WHERE pais IS NOT NULL"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Mostrar lista de cargos existentes na empresa.",
+        "options": [
+            "SELECT DISTINCT cargo FROM empregados",
+            "SELECT cargo FROM empregados",
+            "SELECT cargo FROM empregados GROUP BY cargo",
+            "SELECT cargo FROM empregados WHERE cargo IS NOT NULL"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Lista de países com o número de clientes em cada um.",
+        "options": [
+            "SELECT pais, COUNT(*) AS totalClientes FROM clientes GROUP BY pais",
+            "SELECT pais, SUM(limiteCredito) FROM clientes GROUP BY pais",
+            "SELECT pais, AVG(limiteCredito) FROM clientes GROUP BY pais",
+            "SELECT DISTINCT pais, COUNT(*) FROM clientes"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Lista de categorias de produtos e soma dos preços sugeridos de cada categoria.",
+        "options": [
+            "SELECT categoria, SUM(precoSugerido) AS totalPreco FROM produtos GROUP BY categoria",
+            "SELECT categoria, AVG(precoSugerido) FROM produtos GROUP BY categoria",
+            "SELECT categoria, COUNT(*) FROM produtos GROUP BY categoria",
+            "SELECT categoria, MAX(precoSugerido) FROM produtos GROUP BY categoria"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Lista de países com valor médio de limite de crédito de cada país.",
+        "options": [
+            "SELECT pais, AVG(limiteCredito) AS mediaLimite FROM clientes GROUP BY pais",
+            "SELECT pais, SUM(limiteCredito) FROM clientes GROUP BY pais",
+            "SELECT pais, MAX(limiteCredito) FROM clientes GROUP BY pais",
+            "SELECT DISTINCT pais, AVG(limiteCredito) FROM clientes"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Lista de países com valor médio de limite de crédito, ordenado pelo valor do limite.",
+        "options": [
+            "SELECT pais, AVG(limiteCredito) AS mediaLimite FROM clientes GROUP BY pais ORDER BY mediaLimite ASC",
+            "SELECT pais, AVG(limiteCredito) AS mediaLimite FROM clientes GROUP BY pais ORDER BY pais ASC",
+            "SELECT pais, SUM(limiteCredito) FROM clientes GROUP BY pais ORDER BY SUM(limiteCredito) DESC",
+            "SELECT DISTINCT pais, AVG(limiteCredito) FROM clientes ORDER BY pais"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Mostrar valor total pago por cada cliente.",
+        "options": [
+            "SELECT cliente, SUM(valor) AS totalPago FROM pagamentos GROUP BY cliente",
+            "SELECT cliente, AVG(valor) FROM pagamentos GROUP BY cliente",
+            "SELECT cliente, MAX(valor) FROM pagamentos GROUP BY cliente",
+            "SELECT DISTINCT cliente, SUM(valor) FROM pagamentos"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Quantos clientes cada gerente de conta possui.",
+        "options": [
+            "SELECT representanteVendas, COUNT(*) AS totalClientes FROM clientes GROUP BY representanteVendas",
+            "SELECT representanteVendas, SUM(limiteCredito) FROM clientes GROUP BY representanteVendas",
+            "SELECT DISTINCT representanteVendas, COUNT(*) FROM clientes",
+            "SELECT representanteVendas, AVG(limiteCredito) FROM clientes GROUP BY representanteVendas"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Países com valor médio de limite de crédito > 0, ordenado pelo valor do limite.",
+        "options": [
+            "SELECT pais, AVG(limiteCredito) AS mediaLimite FROM clientes GROUP BY pais HAVING AVG(limiteCredito) > 0 ORDER BY mediaLimite ASC",
+            "SELECT pais, AVG(limiteCredito) AS mediaLimite FROM clientes GROUP BY pais ORDER BY mediaLimite ASC",
+            "SELECT pais, SUM(limiteCredito) FROM clientes GROUP BY pais HAVING SUM(limiteCredito) > 0",
+            "SELECT DISTINCT pais, AVG(limiteCredito) FROM clientes HAVING AVG(limiteCredito) > 0"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Países com mais de 10 clientes.",
+        "options": [
+            "SELECT pais, COUNT(*) AS totalClientes FROM clientes GROUP BY pais HAVING COUNT(*) > 10",
+            "SELECT pais, COUNT(*) AS totalClientes FROM clientes GROUP BY pais",
+            "SELECT DISTINCT pais FROM clientes HAVING COUNT(*) > 10",
+            "SELECT pais, SUM(limiteCredito) FROM clientes GROUP BY pais HAVING SUM(limiteCredito) > 10"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Produtos com preço de compra entre R$ 60 e R$ 70 usando BETWEEN.",
+        "options": [
+            "SELECT nome, fabricante, precoCompra FROM produtos WHERE precoCompra BETWEEN 60 AND 70",
+            "SELECT nome, fabricante, precoCompra FROM produtos WHERE precoCompra NOT BETWEEN 60 AND 70",
+            "SELECT * FROM produtos WHERE precoCompra BETWEEN 60 AND 70",
+            "SELECT nome, fabricante, precoCompra FROM produtos WHERE precoCompra IN (60,70)"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Clientes com limite de crédito entre R$ 50.000 e R$ 80.000 usando BETWEEN.",
+        "options": [
+            "SELECT nome, sobrenome, pais, limiteCredito FROM clientes WHERE limiteCredito BETWEEN 50000 AND 80000",
+            "SELECT nome, sobrenome, pais, limiteCredito FROM clientes WHERE limiteCredito NOT BETWEEN 50000 AND 80000",
+            "SELECT * FROM clientes WHERE limiteCredito BETWEEN 50000 AND 80000",
+            "SELECT nome, sobrenome, pais FROM clientes WHERE limiteCredito BETWEEN 50000 AND 80000"
+        ],
+        "correct": 0
     }
-    ];
+];
+
+
 
 
         let currentQuestion = 0;
@@ -591,4 +1143,5 @@
     </script>
 </body>
 </html>
+
 
