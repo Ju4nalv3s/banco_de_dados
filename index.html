@@ -253,420 +253,198 @@
 
     <script>
         const questions = [
-            {
-                question: "Qual a diferença conceitual entre dado, informação e conhecimento?",
-                options: [
-                    "Não há diferença, são sinônimos",
-                    "Dados são fatos primários, informação são dados organizados com valor adicional, conhecimento são regras para manipular dados",
-                    "Informação é mais importante que conhecimento",
-                    "Dados e informações são a mesma coisa, conhecimento é diferente"
-                ],
-                correct: 1
-            },
-            {
-        question: "Qual a diferença conceitual entre dado, informação e conhecimento?",
-        options: [
-          "Não há diferença, são sinônimos",
-          "Dados são fatos primários, informação são dados organizados com valor adicional, conhecimento são regras para manipular dados",
-          "Informação é mais importante que conhecimento",
-          "Dados e informações são a mesma coisa, conhecimento é diferente"
-        ],
-        correct: 1
-      },
-      {
-        question: "No Modelo Entidade-Relacionamento (MER), o que é uma entidade?",
-        options: [
-          "Um atributo de um dado",
-          "Um conjunto de informações derivadas",
-          "Um objeto do mundo real que pode ser identificado de forma única",
-          "Uma chave primária em uma tabela"
-        ],
-        correct: 2
-      },
-      {
-        question: "Qual é a principal função de uma chave primária em um banco de dados relacional?",
-        options: [
-          "Permitir relacionamentos entre tabelas",
-          "Garantir unicidade dos registros",
-          "Definir atributos obrigatórios",
-          "Ordenar os dados de forma automática"
-        ],
-        correct: 1
-      },
-      {
-        question: "O que caracteriza um relacionamento 1:N no MER?",
-        options: [
-          "Uma entidade pode se relacionar com várias instâncias de outra, mas a segunda só pode se relacionar com uma instância da primeira",
-          "As duas entidades podem ter várias instâncias relacionadas entre si",
-          "Uma entidade só pode se relacionar com uma instância da outra",
-          "Não existe relacionamento 1:N em MER"
-        ],
-        correct: 0
-      },
-      {
-        question: "Qual é a função de uma chave estrangeira em um banco de dados relacional?",
-        options: [
-          "Identificar unicamente uma linha em uma tabela",
-          "Armazenar dados temporários",
-          "Estabelecer vínculo entre tabelas por meio de referência à chave primária",
-          "Impedir inserção de dados duplicados"
-        ],
-        correct: 2
-      },
-      {
-        question: "No MER, atributos multivalorados devem ser tratados como?",
-        options: [
-          "Um campo comum da tabela",
-          "Uma tabela separada ou entidade associada",
-          "Um índice de busca",
-          "Uma chave estrangeira"
-        ],
-        correct: 1
-      },
-      {
-        question: "Qual dos seguintes é um exemplo de atributo derivado?",
-        options: [
-          "Nome de um cliente",
-          "Data de nascimento",
-          "Idade",
-          "Número de matrícula"
-        ],
-        correct: 2
-      },
-      {
-        question: "O que é normalização em banco de dados?",
-        options: [
-          "Processo de otimização de consultas",
-          "Processo de eliminar redundâncias e inconsistências nos dados",
-          "Método de indexação automática",
-          "Estratégia para aumentar a segurança dos dados"
-        ],
-        correct: 1
-      },
-      {
-        question: "No MER, como é representado um relacionamento?",
-        options: [
-          "Por meio de retângulos",
-          "Por meio de losangos",
-          "Por meio de elipses",
-          "Por meio de chaves primárias"
-        ],
-        correct: 1
-      },
-      {
-        question: "Qual é a diferença entre chave candidata e chave primária?",
-        options: [
-          "Chave candidata é um campo obrigatório e chave primária é opcional",
-          "Chave primária é escolhida entre as chaves candidatas para identificar unicamente os registros",
-          "Chave candidata serve apenas como índice",
-          "Não existe diferença entre elas"
-        ],
-        correct: 1
-      },
-      {
-        question: "Qual símbolo representa atributos no MER?",
-        options: [
-          "Retângulo",
-          "Elipse",
-          "Losango",
-          "Sublinhado"
-        ],
-        correct: 1
-      },
-      {
-        question: "O que caracteriza uma entidade fraca?",
-        options: [
-          "Não possui chave primária própria",
-          "Não pode se relacionar com outras entidades",
-          "É sempre multivalorada",
-          "Não pode ter atributos compostos"
-        ],
-        correct: 0
-      },
-      {
-        question: "Como se representa uma chave primária no MER?",
-        options: [
-          "Atributo com linha dupla",
-          "Atributo sublinhado",
-          "Retângulo sombreado",
-          "Elipse pontilhada"
-        ],
-        correct: 1
-      },
-      {
-        question: "Um auto-relacionamento no MER ocorre quando:",
-        options: [
-          "Uma entidade se relaciona com outra de mesmo tipo",
-          "Uma entidade se relaciona com ela mesma",
-          "Dois atributos são iguais",
-          "Um relacionamento é duplicado"
-        ],
-        correct: 1
-      },
-      {
-        question: "No mapeamento de um relacionamento N:N para o modelo relacional:",
-        options: [
-          "As entidades viram atributos",
-          "Cria-se uma nova tabela para representar o relacionamento",
-          "Ele se transforma em relacionamento 1:N",
-          "É impossível mapear"
-        ],
-        correct: 1
-      },
-      {
-        question: "O que é integridade referencial?",
-        options: [
-          "Restrição que impede redundância de atributos",
-          "Regra que garante que valores de chave estrangeira correspondam a uma chave primária existente",
-          "Garantia de que não existam atributos nulos",
-          "Controle de concorrência no banco de dados"
-        ],
-        correct: 1
-      },
-      {
-        question: "A participação total em um relacionamento significa que:",
-        options: [
-          "A entidade pode existir sem participar do relacionamento",
-          "Toda instância da entidade deve obrigatoriamente participar do relacionamento",
-          "A entidade não pode ter chave primária",
-          "O relacionamento deve ser N:N"
-        ],
-        correct: 1
-      },
-      {
-        question: "No modelo relacional, uma tupla corresponde a:",
-        options: [
-          "Um atributo",
-          "Uma linha da tabela",
-          "Uma coluna da tabela",
-          "Um relacionamento"
-        ],
-        correct: 1
-      },
-      {
-        question: "O que representa a chave estrangeira em uma tabela?",
-        options: [
-          "Uma cópia da chave primária de outra tabela",
-          "Um atributo opcional sem vínculo",
-          "Uma coluna derivada",
-          "Um índice auxiliar"
-        ],
-        correct: 0
-      },
-      {
-        question: "Na especialização no MER:",
-        options: [
-          "Uma entidade genérica é dividida em entidades mais específicas",
-          "Relacionamentos se transformam em atributos",
-          "Atributos compostos são simplificados",
-          "Uma entidade fraca se torna forte"
-        ],
-        correct: 0
-      },
-      {
-        question: "No mapeamento de um atributo multivalorado para o modelo relacional:",
-        options: [
-          "O atributo é armazenado na mesma tabela, repetido",
-          "Cria-se uma nova tabela para armazenar seus valores",
-          "Ele é descartado",
-          "É convertido em chave estrangeira"
-        ],
-        correct: 1
-      },
-      {
-        question: "Qual é a diferença entre instância e esquema em banco de dados?",
-        options: [
-          "Esquema é a estrutura (definição) e instância são os dados em um momento específico",
-          "Instância é a estrutura e esquema são os dados",
-          "Ambos representam apenas os dados",
-          "Ambos representam apenas a estrutura"
-        ],
-        correct: 0
-      },
-      {
-        question: "O que significa generalização no MER?",
-        options: [
-          "Transformar atributos compostos em simples",
-          "Combinar entidades específicas em uma entidade mais genérica",
-          "Remover relacionamentos fracos",
-          "Dividir entidades fortes em entidades fracas"
-        ],
-        correct: 1
-      },
-      {
-        question: "Qual representação correta para relacionamento no MER?",
-        options: [
-          "Elipse",
-          "Retângulo",
-          "Losango",
-          "Linha sublinhada"
-        ],
-        correct: 2
-      },
-      {
-        question: "No MER, o atributo derivado é representado como:",
-        options: [
-          "Elipse tracejada",
-          "Retângulo em negrito",
-          "Elipse dupla",
-          "Sublinhado"
-        ],
-        correct: 0
-      },
-
-
     {
-    question: "No MER, um atributo composto é representado:",
-    options: [
-        "Por um retângulo duplo",
-        "Por uma elipse ligada a outras elipses",
-        "Por uma linha pontilhada",
-        "Por um losango interno"
+    "question": "Selecione o nome, sobrenome e país dos clientes.",
+    "options": [
+        "SELECT nome, sobrenome, pais FROM clientes",
+        "SELECT * FROM clientes",
+        "SELECT nome, sobrenome FROM clientes",
+        "SELECT pais FROM clientes"
     ],
-    correct: 1
+    "correct": 0
     },
     {
-    question: "Qual alternativa representa corretamente um atributo multivalorado no MER?",
-    options: [
-        "Elipse dupla",
-        "Elipse tracejada",
-        "Retângulo sombreado",
-        "Sublinhado"
+    "question": "Selecione o nome, sobrenome e cargo dos empregados.",
+    "options": [
+        "SELECT nome, sobrenome, cargo FROM empregados",
+        "SELECT * FROM empregados",
+        "SELECT nome, cargo FROM empregados",
+        "SELECT sobrenome, cargo FROM empregados"
     ],
-    correct: 0
+    "correct": 0
     },
     {
-    question: "No MER, uma entidade associativa é utilizada para:",
-    options: [
-        "Representar atributos compostos",
-        "Transformar um relacionamento N:N em entidade",
-        "Definir chaves estrangeiras",
-        "Armazenar atributos derivados"
+    "question": "Selecione o código, cidade e país dos escritórios.",
+    "options": [
+        "SELECT codigo, cidade, pais FROM escritorios",
+        "SELECT * FROM escritorios",
+        "SELECT cidade, pais FROM escritorios",
+        "SELECT codigo, cidade FROM escritorios"
     ],
-    correct: 1
+    "correct": 0
     },
     {
-    question: "Na modelagem, o termo 'cardinalidade mínima' indica:",
-    options: [
-        "O número máximo de ocorrências",
-        "O número mínimo de vezes que uma entidade deve participar do relacionamento",
-        "Se o relacionamento é obrigatório ou opcional",
-        "O tipo de chave primária usada"
+    "question": "Como obter todos os clientes?",
+    "options": [
+        "SELECT * FROM clientes",
+        "SELECT nome, sobrenome FROM clientes",
+        "SELECT clientes FROM *",
+        "SELECT ALL FROM clientes"
     ],
-    correct: 1
+    "correct": 0
     },
     {
-    question: "A diferença entre participação total e parcial é:",
-    options: [
-        "Total: todas instâncias devem participar; Parcial: algumas podem não participar",
-        "Total: apenas atributos compostos; Parcial: apenas atributos simples",
-        "Total: usada em entidades fortes; Parcial: em fracas",
-        "Não há diferença prática"
+    "question": "Como obter todos os empregados?",
+    "options": [
+        "SELECT * FROM empregados",
+        "SELECT nome, cargo FROM empregados",
+        "SELECT empregados FROM *",
+        "SELECT ALL FROM empregados"
     ],
-    correct: 0
+    "correct": 0
     },
     {
-    question: "Qual é a característica principal de uma entidade fraca?",
-    options: [
-        "Depende de uma entidade forte para existir",
-        "Não pode ter relacionamentos",
-        "Não aceita atributos multivalorados",
-        "É derivada de atributos compostos"
+    "question": "Como obter todos os escritórios?",
+    "options": [
+        "SELECT * FROM escritorios",
+        "SELECT codigo, cidade FROM escritorios",
+        "SELECT cidade, pais FROM escritorios",
+        "SELECT ALL FROM escritorios"
     ],
-    correct: 0
+    "correct": 0
     },
     {
-    question: "No modelo relacional, a operação de JOIN serve para:",
-    options: [
-        "Excluir registros duplicados",
-        "Unir dados de duas ou mais tabelas com base em atributos relacionados",
-        "Remover chaves estrangeiras",
-        "Normalizar tabelas"
+    "question": "Como obter todos os produtos?",
+    "options": [
+        "SELECT * FROM produtos",
+        "SELECT nome, fabricante FROM produtos",
+        "SELECT produtos FROM *",
+        "SELECT ALL FROM produtos"
     ],
-    correct: 1
+    "correct": 0
     },
     {
-    question: "O que é uma chave substituta (surrogate key)?",
-    options: [
-        "Uma chave estrangeira de outra tabela",
-        "Um atributo artificial criado apenas para identificar registros",
-        "Um atributo multivalorado",
-        "Um índice de pesquisa"
+    "question": "Gerar lista de clientes localizados nos Estados Unidos (USA).",
+    "options": [
+        "SELECT nome, sobrenome FROM clientes WHERE pais = 'USA'",
+        "SELECT nome, sobrenome FROM clientes WHERE pais <> 'USA'",
+        "SELECT * FROM clientes WHERE pais = 'USA'",
+        "SELECT nome FROM clientes WHERE pais = 'USA'"
     ],
-    correct: 1
+    "correct": 0
     },
     {
-    question: "No MER, qual símbolo representa uma entidade?",
-    options: [
-        "Retângulo",
-        "Elipse",
-        "Losango",
-        "Triângulo"
+    "question": "Clientes com limite de crédito superior a R$ 100.000.",
+    "options": [
+        "SELECT nome, sobrenome, pais FROM clientes WHERE limiteCredito > 100000",
+        "SELECT nome, sobrenome FROM clientes WHERE limiteCredito >= 100000",
+        "SELECT nome, sobrenome, pais FROM clientes WHERE limiteCredito < 100000",
+        "SELECT nome, sobrenome, pais FROM clientes WHERE limiteCredito = 100000"
     ],
-    correct: 0
+    "correct": 0
     },
     {
-    question: "Na especialização total, toda entidade do supertipo:",
-    options: [
-        "Deve obrigatoriamente pertencer a pelo menos um subtipo",
-        "Pode ou não pertencer a um subtipo",
-        "Se torna um atributo derivado",
-        "É descartada do modelo"
+    "question": "Selecionar nomes de empregados.",
+    "options": [
+        "SELECT nome FROM empregados",
+        "SELECT nome, sobrenome FROM empregados",
+        "SELECT * FROM empregados",
+        "SELECT cargo FROM empregados"
     ],
-    correct: 0
+    "correct": 0
     },
     {
-    question: "O que diferencia especialização de generalização?",
-    options: [
-        "Especialização divide entidades em subconjuntos; generalização combina entidades em um supertipo",
-        "Especialização une atributos; generalização elimina relacionamentos",
-        "Especialização ocorre apenas em entidades fracas",
-        "Não há diferença prática"
+    "question": "Listar código e cidade de escritórios localizados no Japão.",
+    "options": [
+        "SELECT codigo, cidade FROM escritorios WHERE pais = 'Japan'",
+        "SELECT codigo, cidade FROM escritorios WHERE pais <> 'Japan'",
+        "SELECT * FROM escritorios WHERE pais = 'Japan'",
+        "SELECT codigo, pais FROM escritorios WHERE cidade = 'Japan'"
     ],
-    correct: 0
+    "correct": 0
     },
     {
-    question: "No modelo relacional, a integridade de entidade garante que:",
-    options: [
-        "Nenhum valor de chave primária pode ser nulo",
-        "As chaves estrangeiras sempre existam",
-        "Todos os atributos sejam obrigatórios",
-        "Não haja redundância"
+    "question": "Listar código, cliente e data dos pedidos já entregues.",
+    "options": [
+        "SELECT codigo, cliente, dataPedido FROM pedidos WHERE status = 'entregue'",
+        "SELECT codigo, cliente, dataEntrega FROM pedidos WHERE status = 'entregue'",
+        "SELECT codigo, cliente, dataPedido FROM pedidos WHERE status <> 'entregue'",
+        "SELECT * FROM pedidos WHERE status = 'entregue'"
     ],
-    correct: 0
+    "correct": 1
     },
     {
-    question: "No MER, um atributo derivado é usado para:",
-    options: [
-        "Armazenar valores calculados a partir de outros atributos",
-        "Identificar unicamente a entidade",
-        "Representar cardinalidade",
-        "Definir integridade referencial"
+    "question": "Mostrar nomes dos produtos cadastrados na categoria de código 5.",
+    "options": [
+        "SELECT nome FROM produtos WHERE categoria = 5",
+        "SELECT nome FROM produtos WHERE categoria <> 5",
+        "SELECT * FROM produtos WHERE categoria = 5",
+        "SELECT nome, fabricante FROM produtos WHERE categoria = 5"
     ],
-    correct: 0
+    "correct": 0
     },
     {
-    question: "Qual a principal vantagem da normalização?",
-    options: [
-        "Melhora a integridade e reduz redundância",
-        "Aumenta a velocidade das consultas",
-        "Elimina necessidade de chaves primárias",
-        "Permite uso de atributos multivalorados"
+    "question": "Mostrar pagamentos efetuados pelo cliente de código 114.",
+    "options": [
+        "SELECT * FROM pagamentos WHERE cliente = 114",
+        "SELECT * FROM pagamentos WHERE cliente <> 114",
+        "SELECT cliente, valor FROM pagamentos WHERE cliente = 114",
+        "SELECT * FROM pagamentos WHERE idCliente = 114"
     ],
-    correct: 0
+    "correct": 3
     },
     {
-    question: "O que é agregação no MER?",
-    options: [
-        "Relacionamento tratado como entidade para se relacionar com outra entidade",
-        "Atributos compostos sendo divididos em partes menores",
-        "Combinação de duas entidades fortes em uma fraca",
-        "Conversão de relacionamentos N:N em 1:N"
+    "question": "Mostrar data e valor dos pagamentos com valor >= R$ 100.000.",
+    "options": [
+        "SELECT dataPagamento, valor FROM pagamentos WHERE valor >= 100000",
+        "SELECT dataPagamento, valor FROM pagamentos WHERE valor > 100000",
+        "SELECT * FROM pagamentos WHERE valor >= 100000",
+        "SELECT dataPagamento, valor FROM pagamentos WHERE valor <= 100000"
     ],
-    correct: 0
+    "correct": 0
+    },
+    {
+    "question": "Listar código, cliente e data dos pedidos ainda não entregues.",
+    "options": [
+        "SELECT codigo, cliente, dataPedido FROM pedidos WHERE status <> 'entregue'",
+        "SELECT codigo, cliente, dataPedido FROM pedidos WHERE status = 'entregue'",
+        "SELECT * FROM pedidos WHERE status <> 'entregue'",
+        "SELECT codigo, cliente, dataPedido FROM pedidos WHERE status IS NULL"
+    ],
+    "correct": 0
+    },
+    {
+    "question": "Listar clientes localizados fora dos Estados Unidos.",
+    "options": [
+        "SELECT nome, sobrenome, pais FROM clientes WHERE pais <> 'USA'",
+        "SELECT nome, sobrenome, pais FROM clientes WHERE pais = 'USA'",
+        "SELECT * FROM clientes WHERE pais <> 'USA'",
+        "SELECT nome, sobrenome FROM clientes WHERE pais <> 'USA'"
+    ],
+    "correct": 0
+    },
+    {
+    "question": "Clientes nos EUA com limite de crédito superior a R$ 100.000 usando operador lógico AND.",
+    "options": [
+        "SELECT nome, sobrenome FROM clientes WHERE pais = 'USA' AND limiteCredito > 100000",
+        "SELECT nome, sobrenome FROM clientes WHERE pais = 'USA' OR limiteCredito > 100000",
+        "SELECT nome, sobrenome FROM clientes WHERE pais <> 'USA' AND limiteCredito > 100000",
+        "SELECT nome, sobrenome FROM clientes WHERE pais = 'USA'"
+    ],
+    "correct": 0
+    },
+    {
+    "question": "Selecionar nomes de vendedores que são chefiados pelo empregado 1102.",
+    "options": [
+        "SELECT nome FROM empregados WHERE chefe = 1102",
+        "SELECT nome FROM empregados WHERE chefe <> 1102",
+        "SELECT * FROM empregados WHERE chefe = 1102",
+        "SELECT nome, sobrenome FROM empregados WHERE chefe = 1102"
+    ],
+    "correct": 0
     }
-   
-        ];
+    ];
+
 
         let currentQuestion = 0;
         let userAnswers = [];
@@ -813,3 +591,4 @@
     </script>
 </body>
 </html>
+
