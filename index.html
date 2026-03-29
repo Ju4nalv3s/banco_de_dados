@@ -1,60 +1,3 @@
-
-
-<!DOCTYPE html> <html lang="pt-BR"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Questionário</title> <style> /* (mantive seu CSS original resumido) */ body { font-family: Arial; background: linear-gradient(135deg,#66
-
-pasted
-
-melhore
-
-16:38
-
-Visualizou um arquivo, criou um arquivo, leu um arquivo
-Visualizou um arquivo, criou um arquivo, leu um arquivo
-Aqui está o seu questionário reformulado! As melhorias incluem:
-
-Visual
-
-Tema escuro moderno com gradiente roxo/rosa como destaque
-Tipografia com Syne (display) + DM Sans (corpo) para uma leitura elegante
-Efeito de luz de fundo sutil por trás do card
-UX & Interação
-
-Barra de progresso animada no topo do card
-Indicadores de ponto (●) que ficam verdes/vermelhos conforme você responde
-Feedback imediato ao clicar: opção correta fica verde com ✓, errada fica vermelha com ✗
-Questões e respostas são embaralhadas a cada nova partida
-Navegação livre entre perguntas já respondidas
-Tela de Resultado
-
-Anel animado com a porcentagem de acertos
-Mensagem dinâmica de acordo com o desempenho (Perfeito / Excelente / Bom / Continue Estudando)
-Placar de corretas e erradas em destaque
-Questionario
-Código · HTML 
-
-[ { "question": "O que caracteriza o refinamento sucessivo?", "options": [ "Resolver tudo de forma imediata", "Aprimorar a solução em etapas progressivas", "Evitar revisões", "Ignorar testes" ], "correct": 1 }, { "question": "Qual é o pri
-
-pasted
-
-coloque esse json  nas questoes
-
-16:40
-
-Visualizou um arquivo, editou um arquivo, leu um arquivo
-Visualizou um arquivo, editou um arquivo, leu um arquivo
-Pronto! As 47 questões do JSON foram inseridas no questionário. Tudo funciona igual — embaralhamento de perguntas e respostas a cada nova partida, feedback visual imediato, barra de progresso e tela de resultado com o anel animado.
-
-Questionario
-Código · HTML 
-
-
-
-
-
-Claude é uma IA e pode cometer erros. Por favor, verifique as respostas.
-Questionario · HTML
-Copiar
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -64,7 +7,7 @@ Copiar
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
+
   :root {
     --bg: #0d0d0f;
     --surface: #16161a;
@@ -78,7 +21,7 @@ Copiar
     --muted: #7a7a90;
     --radius: 14px;
   }
- 
+
   body {
     font-family: 'DM Sans', sans-serif;
     background: var(--bg);
@@ -90,7 +33,7 @@ Copiar
     padding: 24px;
     overflow-x: hidden;
   }
- 
+
   body::before {
     content: '';
     position: fixed;
@@ -101,14 +44,14 @@ Copiar
     pointer-events: none;
     z-index: 0;
   }
- 
+
   .shell {
     position: relative;
     z-index: 1;
     width: 100%;
     max-width: 680px;
   }
- 
+
   /* ─── HEADER ─── */
   .header {
     text-align: center;
@@ -141,7 +84,7 @@ Copiar
     color: var(--muted);
     font-size: .95rem;
   }
- 
+
   /* ─── CARD ─── */
   .card {
     background: var(--surface);
@@ -149,7 +92,7 @@ Copiar
     border-radius: var(--radius);
     overflow: hidden;
   }
- 
+
   /* ─── PROGRESS ─── */
   .progress-bar-wrap {
     height: 4px;
@@ -161,7 +104,7 @@ Copiar
     border-radius: 0 99px 99px 0;
     transition: width .45s cubic-bezier(.4,0,.2,1);
   }
- 
+
   .progress-meta {
     display: flex;
     justify-content: space-between;
@@ -186,7 +129,7 @@ Copiar
   .dot.answered { background: var(--accent); }
   .dot.correct  { background: var(--green); }
   .dot.wrong    { background: var(--red); }
- 
+
   /* ─── QUESTION AREA ─── */
   .q-area {
     padding: 28px 28px 12px;
@@ -207,7 +150,7 @@ Copiar
     line-height: 1.4;
     color: var(--text);
   }
- 
+
   /* ─── OPTIONS ─── */
   .options {
     padding: 16px 28px;
@@ -239,7 +182,7 @@ Copiar
   }
   .option:hover:not(.locked) { border-color: var(--accent); transform: translateX(3px); }
   .option:hover:not(.locked)::before { opacity: .06; }
- 
+
   .opt-letter {
     width: 28px; height: 28px;
     border-radius: 8px;
@@ -265,33 +208,33 @@ Copiar
     opacity: 0;
     transition: opacity .2s;
   }
- 
+
   /* States */
   .option.selected { border-color: var(--accent); }
   .option.selected .opt-letter { background: var(--accent); color: #fff; }
   .option.selected::before { opacity: .08; }
- 
+
   .option.correct { border-color: var(--green); }
   .option.correct .opt-letter { background: var(--green); color: #000; }
   .option.correct::before { background: var(--green); opacity: .08; }
   .option.correct .opt-icon { opacity: 1; }
- 
+
   .option.wrong { border-color: var(--red); }
   .option.wrong .opt-letter { background: var(--red); color: #fff; }
   .option.wrong::before { background: var(--red); opacity: .08; }
   .option.wrong .opt-icon { opacity: 1; }
- 
+
   .option.show-correct { border-color: var(--green); animation: pulse .35s ease; }
   .option.show-correct .opt-letter { background: var(--green); color: #000; }
   .option.show-correct::before { background: var(--green); opacity: .06; }
- 
+
   .option.locked { cursor: default; transform: none !important; }
- 
+
   @keyframes pulse {
     0%,100% { transform: scale(1); }
     50% { transform: scale(1.015); }
   }
- 
+
   /* ─── FOOTER NAV ─── */
   .q-footer {
     padding: 16px 28px 24px;
@@ -327,7 +270,7 @@ Copiar
     color: #000;
   }
   .btn:disabled { opacity: .35; cursor: default; transform: none !important; }
- 
+
   /* ─── START SCREEN ─── */
   #startScreen {
     padding: 40px 32px;
@@ -362,7 +305,7 @@ Copiar
     font-size: .78rem;
     color: var(--muted);
   }
- 
+
   /* ─── RESULTS ─── */
   #resultsScreen {
     padding: 40px 32px;
@@ -392,7 +335,7 @@ Copiar
     color: var(--text);
   }
   .score-sub { font-size: .72rem; color: var(--muted); margin-top: 2px; }
- 
+
   .result-headline {
     font-family: 'Syne', sans-serif;
     font-size: 1.5rem;
@@ -400,7 +343,7 @@ Copiar
     margin-bottom: 8px;
   }
   .result-msg { color: var(--muted); font-size: .95rem; margin-bottom: 28px; }
- 
+
   .breakdown {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -423,7 +366,7 @@ Copiar
   .breakdown-item.ok strong { color: var(--green); }
   .breakdown-item.err strong { color: var(--red); }
   .breakdown-item span { font-size: .78rem; color: var(--muted); }
- 
+
   /* ─── ANIM ─── */
   @keyframes fadeDown {
     from { opacity:0; transform:translateY(-16px); }
@@ -435,14 +378,14 @@ Copiar
 </style>
 </head>
 <body>
- 
+
 <div class="shell">
   <div class="header">
     <span class="badge">Quiz Interativo</span>
     <h1>Teste seus conhecimentos</h1>
     <p>Responda todas as perguntas e veja seu desempenho.</p>
   </div>
- 
+
   <div class="card">
     <!-- START -->
     <div id="startScreen">
@@ -461,7 +404,7 @@ Copiar
         ▶ Iniciar Questionário
       </button>
     </div>
- 
+
     <!-- PROGRESS -->
     <div id="quizArea" style="display:none;">
       <div class="progress-bar-wrap">
@@ -471,11 +414,11 @@ Copiar
         <span class="progress-label" id="progressLabel">Pergunta 1 de 5</span>
         <div class="progress-dots" id="progressDots"></div>
       </div>
- 
+
       <!-- Q CONTAINER -->
       <div id="qSlot"></div>
     </div>
- 
+
     <!-- RESULTS -->
     <div id="resultsScreen">
       <svg width="0" height="0">
@@ -498,10 +441,10 @@ Copiar
           <span class="score-sub">pontuação</span>
         </div>
       </div>
- 
+
       <div class="result-headline" id="resultHeadline"></div>
       <p class="result-msg" id="resultMsg"></p>
- 
+
       <div class="breakdown">
         <div class="breakdown-item ok">
           <strong id="correctCount">0</strong>
@@ -512,14 +455,14 @@ Copiar
           <span>✗ Erradas</span>
         </div>
       </div>
- 
+
       <button class="btn btn-primary" onclick="restartQuiz()" style="width:100%;padding:14px;">
         ↺ Refazer Quiz
       </button>
     </div>
   </div>
 </div>
- 
+
 <script>
 const questions = [
   {"question":"O que caracteriza o refinamento sucessivo?","options":["Resolver tudo de forma imediata","Aprimorar a solução em etapas progressivas","Evitar revisões","Ignorar testes"],"correct":1},
@@ -570,13 +513,13 @@ const questions = [
   {"question":"Dividir problema ajuda a:","options":["Complicar","Simplificar solução","Ignorar etapas","Eliminar análise"],"correct":1},
   {"question":"Teste final serve para:","options":["Ignorar erros","Confirmar solução","Eliminar código","Evitar validação"],"correct":1}
 ];
- 
+
 const LETTERS = ['A','B','C','D','E'];
 let shuffled = [];
 let current = 0;
 let userAnswers = [];
 let answered = [];
- 
+
 function deepShuffle() {
   shuffled = questions.map(q => {
     const correct = q.options[q.correct];
@@ -585,21 +528,21 @@ function deepShuffle() {
   });
   shuffled.sort(() => Math.random() - 0.5);
 }
- 
+
 function startQuiz() {
   deepShuffle();
   userAnswers = new Array(shuffled.length).fill(null);
   answered    = new Array(shuffled.length).fill(false);
   current = 0;
- 
+
   document.getElementById('startScreen').style.display = 'none';
   document.getElementById('quizArea').style.display = 'block';
   document.getElementById('totalQCount').textContent = shuffled.length;
- 
+
   buildDots();
   renderQuestion(0);
 }
- 
+
 function buildDots() {
   const wrap = document.getElementById('progressDots');
   wrap.innerHTML = '';
@@ -610,21 +553,21 @@ function buildDots() {
     wrap.appendChild(d);
   });
 }
- 
+
 function updateProgress(i) {
   const pct = ((i) / shuffled.length) * 100;
   document.getElementById('progressFill').style.width = pct + '%';
   document.getElementById('progressLabel').textContent =
     `Pergunta ${i + 1} de ${shuffled.length}`;
 }
- 
+
 function renderQuestion(i) {
   const q = shuffled[i];
   const slot = document.getElementById('qSlot');
- 
+
   const isLast = i === shuffled.length - 1;
   const isAnswered = answered[i];
- 
+
   slot.innerHTML = `
     <div class="q-area q-anim">
       <div class="q-number">Questão ${i + 1}</div>
@@ -656,55 +599,55 @@ function renderQuestion(i) {
       </button>
     </div>
   `;
- 
+
   updateProgress(i);
 }
- 
+
 function selectOption(qIdx, optIdx) {
   if (answered[qIdx]) return;
   answered[qIdx] = true;
   userAnswers[qIdx] = optIdx;
- 
+
   const q = shuffled[qIdx];
   const opts = document.querySelectorAll('.option');
- 
+
   opts.forEach((el, j) => {
     el.classList.add('locked');
     if (j === optIdx && j !== q.correct) { el.classList.add('wrong');   el.querySelector('.opt-icon').textContent = '✗'; el.querySelector('.opt-icon').style.opacity=1; }
     if (j === q.correct)                  { el.classList.add('correct'); el.querySelector('.opt-icon').textContent = '✓'; el.querySelector('.opt-icon').style.opacity=1; }
   });
- 
+
   // Update dot
   const dot = document.getElementById('dot' + qIdx);
   dot.classList.add(optIdx === q.correct ? 'correct' : 'wrong');
- 
+
   // Re-render footer to update button state
   const isLast = qIdx === shuffled.length - 1;
   document.getElementById('nextBtn').className =
     'btn ' + (isLast ? 'btn-finish' : 'btn-primary');
 }
- 
+
 function go(i) {
   if (i < 0 || i >= shuffled.length) return;
   current = i;
   renderQuestion(i);
 }
- 
+
 function finishQuiz() {
   let score = 0;
   shuffled.forEach((q, i) => { if (userAnswers[i] === q.correct) score++; });
- 
+
   const pct = Math.round((score / shuffled.length) * 100);
   const circumference = 345.4;
- 
+
   document.getElementById('quizArea').style.display = 'none';
   const res = document.getElementById('resultsScreen');
   res.style.display = 'block';
- 
+
   document.getElementById('scorePct').textContent = pct + '%';
   document.getElementById('correctCount').textContent = score;
   document.getElementById('wrongCount').textContent = shuffled.length - score;
- 
+
   const msgs = [
     [100, '🏆 Perfeito!',         'Você acertou tudo. Incrível!'],
     [ 80, '🎉 Excelente!',        'Ótimo desempenho, quase lá!'],
@@ -714,14 +657,14 @@ function finishQuiz() {
   const [, headline, msg] = msgs.find(([min]) => pct >= min);
   document.getElementById('resultHeadline').textContent = headline;
   document.getElementById('resultMsg').textContent = msg;
- 
+
   // Animate ring
   const offset = circumference - (pct / 100) * circumference;
   setTimeout(() => {
     document.getElementById('ringFill').style.strokeDashoffset = offset;
   }, 80);
 }
- 
+
 function restartQuiz() {
   document.getElementById('resultsScreen').style.display = 'none';
   document.getElementById('startScreen').style.display = 'block';
@@ -729,4 +672,3 @@ function restartQuiz() {
 </script>
 </body>
 </html>
- 
