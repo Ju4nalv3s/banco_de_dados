@@ -1,918 +1,192 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Questionário de Banco de Dados</title>
-    <style>
-        /* seu CSS original */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Questionário</title>
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
+<style>
+/* (mantive seu CSS original resumido) */
+body {
+    font-family: Arial;
+    background: linear-gradient(135deg,#667eea,#764ba2);
+    padding:20px;
+}
+.container {
+    max-width:800px;
+    margin:auto;
+    background:#fff;
+    border-radius:10px;
+    overflow:hidden;
+}
+.header {
+    background:#2c3e50;
+    color:#fff;
+    padding:20px;
+    text-align:center;
+}
+.question-container { display:none; padding:20px; }
+.question-container.active { display:block; }
+.option {
+    border:1px solid #ccc;
+    padding:10px;
+    margin:8px 0;
+    cursor:pointer;
+}
+.correct { background:#d4edda; }
+.incorrect { background:#f8d7da; }
+.selected { background:#e8f4fd; }
+</style>
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #2c3e50, #34495e);
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-
-        .header h1 {
-            font-size: 2.2em;
-            margin-bottom: 10px;
-        }
-
-        .header p {
-            opacity: 0.9;
-            font-size: 1.1em;
-        }
-
-        .progress-bar {
-            background: #ecf0f1;
-            height: 8px;
-            margin: 20px 30px;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            background: linear-gradient(90deg, #3498db, #2ecc71);
-            height: 100%;
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-
-        .question-container {
-            padding: 30px;
-            display: none;
-        }
-
-        .question-container.active {
-            display: block;
-        }
-
-        .question {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            border-left: 5px solid #3498db;
-        }
-
-        .question h3 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-            font-size: 1.3em;
-            line-height: 1.5;
-        }
-
-        .options {
-            list-style: none;
-        }
-
-        .option {
-            margin: 12px 0;
-            cursor: pointer;
-            padding: 15px 20px;
-            border-radius: 8px;
-            border: 2px solid #e9ecef;
-            transition: all 0.3s ease;
-            background: white;
-            position: relative;
-        }
-
-        .option:hover {
-            border-color: #3498db;
-            transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);
-        }
-
-        .option input[type="radio"] {
-            margin-right: 15px;
-            transform: scale(1.2);
-        }
-
-        .option.selected {
-            background: #e8f4fd;
-            border-color: #3498db;
-            color: #2c3e50;
-        }
-
-        .option.correct {
-            background: #d4edda;
-            border-color: #28a745;
-            color: #155724;
-        }
-
-        .option.incorrect {
-            background: #f8d7da;
-            border-color: #dc3545;
-            color: #721c24;
-        }
-
-        .navigation {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 30px;
-        }
-
-        .btn {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
-        }
-
-        .btn-secondary {
-            background: #6c757d;
-            color: white;
-        }
-
-        .btn-secondary:hover {
-            background: #545b62;
-            transform: translateY(-2px);
-        }
-
-        .btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .question-counter {
-            color: #6c757d;
-            font-weight: 600;
-        }
-
-        .results {
-            display: none;
-            text-align: center;
-            padding: 50px 30px;
-        }
-
-        .results.show {
-            display: block;
-        }
-
-        .score-circle {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin: 20px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5em;
-            font-weight: bold;
-            color: white;
-        }
-
-        .score-excellent {
-            background: linear-gradient(135deg, #27ae60, #2ecc71);
-        }
-
-        .score-good {
-            background: linear-gradient(135deg, #f39c12, #e67e22);
-        }
-
-        .score-poor {
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-        }
-
-        .feedback {
-            margin: 20px 0;
-            font-size: 1.2em;
-            color: #2c3e50;
-        }
-
-        .start-screen {
-            text-align: center;
-            padding: 50px 30px;
-        }
-
-        .start-screen h2 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-            font-size: 2em;
-        }
-
-        .instructions {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 12px;
-            margin: 30px 0;
-            text-align: left;
-        }
-
-        .instructions ul {
-            margin: 15px 0 0 20px;
-        }
-
-        .instructions li {
-            margin: 8px 0;
-            color: #495057;
-        }
-    </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Questionário de Banco de Dados</h1>
-            <p>Teste seus conhecimentos sobre conceitos fundamentais, MER e modelagem</p>
-        </div>
 
-        <div class="progress-bar">
-            <div class="progress-fill" id="progressFill"></div>
-        </div>
-
-        <!-- Tela inicial -->
-        <div id="startScreen" class="start-screen">
-            <h2>Bem-vindo ao Questionário!</h2>
-            <div class="instructions">
-                <h3>Instruções:</h3>
-                <ul>
-                    <li>O questionário contém 25 questões de múltipla escolha</li>
-                    <li>Cada questão tem apenas uma resposta correta</li>
-                    <li>Você pode voltar para questões anteriores para revisar</li>
-                    <li>Ao final, você receberá sua pontuação e feedback</li>
-                </ul>
-            </div>
-            <button class="btn btn-primary" onclick="startQuiz()">Iniciar Questionário</button>
-        </div>
-
-        <!-- Container das questões -->
-        <div id="questionsContainer"></div>
-
-        <!-- Tela de resultados -->
-        <div id="results" class="results">
-            <h2>Questionário Concluído!</h2>
-            <div id="scoreCircle" class="score-circle">
-                <span id="scoreText">0%</span>
-            </div>
-            <div class="feedback">
-                <p id="feedbackText"></p>
-                <p>Você acertou <span id="correctCount">0</span> de 25 questões.</p>
-            </div>
-            <button class="btn btn-primary" onclick="restartQuiz()">Refazer Questionário</button>
-        </div>
+<div class="container">
+    <div class="header">
+        <h2>Questionário</h2>
     </div>
 
-    <script>
-        const questions = [
-            [
-                {
-                    "question": "O que caracteriza o refinamento sucessivo?",
-                    "options": [
-                        "Resolver tudo de forma imediata",
-                        "Aprimorar a solução em etapas progressivas",
-                        "Evitar revisões",
-                        "Ignorar testes"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Qual é o principal objetivo da validação de soluções?",
-                    "options": [
-                        "Aumentar a complexidade",
-                        "Garantir que atende aos requisitos",
-                        "Reduzir documentação",
-                        "Evitar testes"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Um erro comum ao resolver problemas é:",
-                    "options": [
-                        "Analisar o contexto",
-                        "Testar hipóteses",
-                        "Ignorar o entendimento do problema",
-                        "Dividir tarefas"
-                    ],
-                    "correct": 2
-                },
-                {
-                    "question": "Visão sistêmica envolve:",
-                    "options": [
-                        "Analisar partes isoladas",
-                        "Ignorar relações",
-                        "Compreender interações do sistema",
-                        "Focar apenas no código"
-                    ],
-                    "correct": 2
-                },
-                {
-                    "question": "Feedback loop significa:",
-                    "options": [
-                        "Erro no sistema",
-                        "Retorno de informação ao processo",
-                        "Código duplicado",
-                        "Falha de execução"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Causa-raiz é:",
-                    "options": [
-                        "Sintoma visível",
-                        "Erro superficial",
-                        "Origem real do problema",
-                        "Teste falho"
-                    ],
-                    "correct": 2
-                },
-                {
-                    "question": "O diagrama de fluxo serve para:",
-                    "options": [
-                        "Executar código",
-                        "Visualizar etapas de um processo",
-                        "Compilar programas",
-                        "Testar software"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Decomposição ajuda a:",
-                    "options": [
-                        "Aumentar dificuldade",
-                        "Resolver problemas menores separadamente",
-                        "Ignorar etapas",
-                        "Eliminar testes"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Reconhecimento de padrões permite:",
-                    "options": [
-                        "Ignorar soluções anteriores",
-                        "Reaproveitar soluções similares",
-                        "Aumentar erros",
-                        "Evitar análise"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Abstração consiste em:",
-                    "options": [
-                        "Focar em detalhes irrelevantes",
-                        "Ignorar estrutura",
-                        "Destacar informações importantes",
-                        "Eliminar lógica"
-                    ],
-                    "correct": 2
-                },
-                {
-                    "question": "Algoritmo é:",
-                    "options": [
-                        "Um erro de sistema",
-                        "Sequência lógica de passos",
-                        "Código inválido",
-                        "Interface gráfica"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Requisitos funcionais definem:",
-                    "options": [
-                        "A aparência",
-                        "As funcionalidades",
-                        "Os erros",
-                        "A performance"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Pseudoalgoritmo serve para:",
-                    "options": [
-                        "Executar diretamente",
-                        "Planejar solução",
-                        "Testar hardware",
-                        "Compilar código"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Tentativa e erro eficiente envolve:",
-                    "options": [
-                        "Testar sem critério",
-                        "Aprender com falhas",
-                        "Ignorar resultados",
-                        "Evitar testes"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Pensamento computacional inclui:",
-                    "options": [
-                        "Apenas programação",
-                        "Estratégias de resolução de problemas",
-                        "Evitar lógica",
-                        "Ignorar padrões"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Um fluxograma representa:",
-                    "options": [
-                        "Código executável",
-                        "Passos de um processo",
-                        "Erros do sistema",
-                        "Banco de dados"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Ishikawa é usado para:",
-                    "options": [
-                        "Executar código",
-                        "Analisar causas",
-                        "Criar interface",
-                        "Testar software"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Erro de raciocínio comum:",
-                    "options": [
-                        "Verificar hipóteses",
-                        "Pular análise",
-                        "Dividir tarefas",
-                        "Testar soluções"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Sistema é:",
-                    "options": [
-                        "Parte isolada",
-                        "Conjunto de elementos interligados",
-                        "Erro lógico",
-                        "Código simples"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Feedback positivo:",
-                    "options": [
-                        "Reduz efeitos",
-                        "Amplifica resultados",
-                        "Elimina erros",
-                        "Ignora entrada"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Feedback negativo:",
-                    "options": [
-                        "Amplifica saída",
-                        "Equilibra sistema",
-                        "Ignora resultado",
-                        "Duplica erro"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Mapear sistema ajuda a:",
-                    "options": [
-                        "Confundir solução",
-                        "Visualizar relações",
-                        "Eliminar dados",
-                        "Ignorar fluxo"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Problema grande deve ser:",
-                    "options": [
-                        "Ignorado",
-                        "Dividido em partes",
-                        "Resolvido direto",
-                        "Evitado"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Teste de solução serve para:",
-                    "options": [
-                        "Ignorar erros",
-                        "Validar funcionamento",
-                        "Eliminar código",
-                        "Evitar análise"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Fluxo representa:",
-                    "options": [
-                        "Código",
-                        "Sequência de etapas",
-                        "Erro",
-                        "Interface"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Pensamento lógico ajuda a:",
-                    "options": [
-                        "Criar erros",
-                        "Resolver problemas",
-                        "Ignorar dados",
-                        "Evitar testes"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Análise de problema inclui:",
-                    "options": [
-                        "Ignorar contexto",
-                        "Entender requisitos",
-                        "Evitar solução",
-                        "Pular etapas"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Solução eficiente é:",
-                    "options": [
-                        "Sem testes",
-                        "Validada e funcional",
-                        "Complexa",
-                        "Incompleta"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Erro lógico ocorre quando:",
-                    "options": [
-                        "Código compila",
-                        "Resultado é incorreto",
-                        "Não executa",
-                        "Interface falha"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Processo iterativo é:",
-                    "options": [
-                        "Único passo",
-                        "Repetição com melhorias",
-                        "Erro contínuo",
-                        "Código fixo"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Solução parcial:",
-                    "options": [
-                        "Resolve tudo",
-                        "Resolve parte do problema",
-                        "Ignora problema",
-                        "Elimina análise"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Análise sistêmica considera:",
-                    "options": [
-                        "Parte isolada",
-                        "Todo o sistema",
-                        "Erro específico",
-                        "Código único"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Estratégia eficaz envolve:",
-                    "options": [
-                        "Ignorar testes",
-                        "Planejamento",
-                        "Evitar análise",
-                        "Eliminar dados"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Teste contínuo ajuda a:",
-                    "options": [
-                        "Criar erros",
-                        "Melhorar qualidade",
-                        "Ignorar falhas",
-                        "Evitar solução"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Problemas complexos exigem:",
-                    "options": [
-                        "Soluções rápidas",
-                        "Análise detalhada",
-                        "Ignorar etapas",
-                        "Evitar divisão"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Fluxograma ajuda a:",
-                    "options": [
-                        "Executar código",
-                        "Entender lógica",
-                        "Ignorar fluxo",
-                        "Eliminar etapas"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Revisão de solução serve para:",
-                    "options": [
-                        "Ignorar erros",
-                        "Aprimorar solução",
-                        "Eliminar testes",
-                        "Evitar análise"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Erro de análise ocorre quando:",
-                    "options": [
-                        "Entende problema",
-                        "Interpreta errado",
-                        "Testa solução",
-                        "Divide tarefas"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Modelo mental ajuda a:",
-                    "options": [
-                        "Confundir lógica",
-                        "Organizar pensamento",
-                        "Ignorar dados",
-                        "Eliminar solução"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Planejamento é importante para:",
-                    "options": [
-                        "Evitar erros",
-                        "Estruturar solução",
-                        "Ignorar etapas",
-                        "Eliminar testes"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Estrutura lógica é:",
-                    "options": [
-                        "Desorganizada",
-                        "Sequencial",
-                        "Aleatória",
-                        "Inexistente"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Erro comum é:",
-                    "options": [
-                        "Planejar",
-                        "Testar",
-                        "Pular etapas",
-                        "Analisar"
-                    ],
-                    "correct": 2
-                },
-                {
-                    "question": "Boa solução deve ser:",
-                    "options": [
-                        "Complexa",
-                        "Testada",
-                        "Incompleta",
-                        "Confusa"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Iteração significa:",
-                    "options": [
-                        "Repetição",
-                        "Erro",
-                        "Fim",
-                        "Código"
-                    ],
-                    "correct": 0
-                },
-                {
-                    "question": "Abordagem correta inclui:",
-                    "options": [
-                        "Ignorar problema",
-                        "Entender contexto",
-                        "Evitar testes",
-                        "Eliminar lógica"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Dividir problema ajuda a:",
-                    "options": [
-                        "Complicar",
-                        "Simplificar solução",
-                        "Ignorar etapas",
-                        "Eliminar análise"
-                    ],
-                    "correct": 1
-                },
-                {
-                    "question": "Teste final serve para:",
-                    "options": [
-                        "Ignorar erros",
-                        "Confirmar solução",
-                        "Eliminar código",
-                        "Evitar validação"
-                    ],
-                    "correct": 1
-                }
-            ]
-        ];
+    <div id="startScreen" style="padding:20px;text-align:center;">
+        <button onclick="startQuiz()">Iniciar</button>
+    </div>
 
+    <div id="questionsContainer"></div>
 
+    <div id="results" style="display:none;text-align:center;padding:20px;">
+        <h2>Resultado</h2>
+        <p id="scoreText"></p>
+        <button onclick="restartQuiz()">Refazer</button>
+    </div>
+</div>
 
+<script>
 
-        let currentQuestion = 0;
-        let userAnswers = [];
+// ✅ QUESTÕES CORRIGIDAS (sem array duplo)
+const questions = [
+{
+"question":"O que caracteriza o refinamento sucessivo?",
+"options":["Resolver tudo de uma vez","Aprimorar em etapas","Ignorar testes","Evitar revisões"],
+"correct":1
+},
+{
+"question":"O que é visão sistêmica?",
+"options":["Olhar isolado","Ignorar contexto","Entender o todo","Focar só no código"],
+"correct":2
+},
+{
+"question":"O que é algoritmo?",
+"options":["Erro","Sequência lógica","Interface","Banco"],
+"correct":1
+},
+{
+"question":"O que é abstração?",
+"options":["Ignorar tudo","Focar no essencial","Complicar","Eliminar dados"],
+"correct":1
+},
+{
+"question":"Feedback loop é:",
+"options":["Erro","Retorno de informação","Código duplicado","Teste"],
+"correct":1
+}
+];
 
-        function startQuiz() {
-            document.getElementById('startScreen').style.display = 'none';
-            generateQuestions();
-            showQuestion(0);
-        }
+// ✅ EMBARALHAR RESPOSTAS
+function shuffleQuestions() {
+    questions.forEach(q => {
+        const correct = q.options[q.correct];
+        q.options.sort(() => Math.random() - 0.5);
+        q.correct = q.options.indexOf(correct);
+    });
+}
 
-        function generateQuestions() {
-            const container = document.getElementById('questionsContainer');
-            questions.forEach((q, index) => {
-                const questionDiv = document.createElement('div');
-                questionDiv.className = 'question-container';
-                questionDiv.id = `question-${index}`;
+let currentQuestion = 0;
+let userAnswers = [];
 
-                questionDiv.innerHTML = `
-                    <div class="question">
-                        <h3>${index + 1}. ${q.question}</h3>
-                        <ul class="options">
-                            ${q.options.map((option, optIndex) => `
-                                <li class="option" onclick="selectOption(${index}, ${optIndex})">
-                                    <input type="radio" name="q${index}" value="${optIndex}" id="q${index}_${optIndex}">
-                                    <label for="q${index}_${optIndex}">${String.fromCharCode(97 + optIndex)}) ${option}</label>
-                                </li>
-                            `).join('')}
-                        </ul>
-                    </div>
-                    <div class="navigation">
-                        <button class="btn btn-secondary" onclick="previousQuestion()" ${index === 0 ? 'style="visibility: hidden"' : ''}>
-                            ← Anterior
-                        </button>
-                        <span class="question-counter">Questão ${index + 1} de ${questions.length}</span>
-                        <button class="btn btn-primary" onclick="${index === questions.length - 1 ? 'finishQuiz()' : 'nextQuestion()'}">
-                            ${index === questions.length - 1 ? 'Finalizar' : 'Próxima →'}
-                        </button>
-                    </div>
-                `;
-                container.appendChild(questionDiv);
-            });
-        }
+function startQuiz() {
+    shuffleQuestions();
+    document.getElementById('startScreen').style.display='none';
+    generateQuestions();
+    showQuestion(0);
+}
 
-        function showQuestion(index) {
-            document.querySelectorAll('.question-container').forEach(q => {
-                q.classList.remove('active');
-            });
-            document.getElementById(`question-${index}`).classList.add('active');
-            currentQuestion = index;
-            const progress = ((index + 1) / questions.length) * 100;
-            document.getElementById('progressFill').style.width = progress + '%';
-            if (userAnswers[index] !== undefined) {
-                selectOption(index, userAnswers[index], false);
-            }
-        }
+function generateQuestions() {
+    const container = document.getElementById('questionsContainer');
+    container.innerHTML = "";
 
-        // === FUNÇÃO MODIFICADA PARA VERDE/VERMELHO ===
-        function selectOption(questionIndex, optionIndex, updateAnswer = true) {
-            const options = document.querySelectorAll(`#question-${questionIndex} .option`);
-            options.forEach(opt => {
-                opt.classList.remove('selected', 'correct', 'incorrect');
-            });
+    questions.forEach((q,index)=>{
+        const div = document.createElement('div');
+        div.className='question-container';
+        div.id='q'+index;
 
-            const selectedOption = options[optionIndex];
-            selectedOption.classList.add('selected');
-            document.getElementById(`q${questionIndex}_${optionIndex}`).checked = true;
+        div.innerHTML = `
+        <h3>${index+1}. ${q.question}</h3>
+        ${q.options.map((opt,i)=>`
+            <div class="option" onclick="selectOption(${index},${i})">
+                ${opt}
+            </div>
+        `).join('')}
+        <br>
+        <button onclick="prev()">Voltar</button>
+        <button onclick="next()">Próximo</button>
+        `;
+        container.appendChild(div);
+    });
+}
 
-            if (updateAnswer) {
-                userAnswers[questionIndex] = optionIndex;
-            }
+function showQuestion(i){
+    document.querySelectorAll('.question-container').forEach(q=>q.classList.remove('active'));
+    document.getElementById('q'+i).classList.add('active');
+    currentQuestion=i;
+}
 
-            // Colore como correto ou incorreto
-            if (optionIndex === questions[questionIndex].correct) {
-                selectedOption.classList.add('correct');
-            } else {
-                selectedOption.classList.add('incorrect');
-                const correctOption = options[questions[questionIndex].correct];
-                correctOption.classList.add('correct');
-            }
-        }
+function selectOption(qIndex,optIndex){
+    const opts = document.querySelectorAll(`#q${qIndex} .option`);
+    opts.forEach(o=>o.classList.remove('selected','correct','incorrect'));
 
-        function nextQuestion() {
-            if (currentQuestion < questions.length - 1) {
-                showQuestion(currentQuestion + 1);
-            }
-        }
+    const selected = opts[optIndex];
+    selected.classList.add('selected');
 
-        function previousQuestion() {
-            if (currentQuestion > 0) {
-                showQuestion(currentQuestion - 1);
-            }
-        }
+    userAnswers[qIndex]=optIndex;
 
-        function finishQuiz() {
-            document.getElementById('questionsContainer').style.display = 'none';
-            let correctAnswers = 0;
-            questions.forEach((q, index) => {
-                if (userAnswers[index] === q.correct) {
-                    correctAnswers++;
-                }
-            });
-            showResults(correctAnswers);
-        }
+    if(optIndex===questions[qIndex].correct){
+        selected.classList.add('correct');
+    } else {
+        selected.classList.add('incorrect');
+        opts[questions[qIndex].correct].classList.add('correct');
+    }
+}
 
-        function showResults(correctAnswers) {
-            const percentage = Math.round((correctAnswers / questions.length) * 100);
-            const scoreCircle = document.getElementById('scoreCircle');
-            const scoreText = document.getElementById('scoreText');
-            const feedbackText = document.getElementById('feedbackText');
-            const correctCount = document.getElementById('correctCount');
+function next(){
+    if(currentQuestion < questions.length-1){
+        showQuestion(currentQuestion+1);
+    } else {
+        finishQuiz();
+    }
+}
 
-            scoreText.textContent = percentage + '%';
-            correctCount.textContent = correctAnswers;
+function prev(){
+    if(currentQuestion>0){
+        showQuestion(currentQuestion-1);
+    }
+}
 
-            if (percentage >= 80) {
-                scoreCircle.className = 'score-circle score-excellent';
-                feedbackText.textContent = 'Excelente! Você demonstra ótimo conhecimento em Banco de Dados!';
-            } else if (percentage >= 60) {
-                scoreCircle.className = 'score-circle score-good';
-                feedbackText.textContent = 'Bom trabalho! Continue estudando para aprimorar seus conhecimentos.';
-            } else {
-                scoreCircle.className = 'score-circle score-poor';
-                feedbackText.textContent = 'Continue estudando! Revise o material e tente novamente.';
-            }
+function finishQuiz(){
+    let score=0;
+    questions.forEach((q,i)=>{
+        if(userAnswers[i]===q.correct) score++;
+    });
 
-            document.getElementById('results').classList.add('show');
-            document.getElementById('progressFill').style.width = '100%';
-        }
+    document.getElementById('questionsContainer').style.display='none';
+    document.getElementById('results').style.display='block';
+    document.getElementById('scoreText').innerText = `Você acertou ${score} de ${questions.length}`;
+}
 
-        function restartQuiz() {
-            currentQuestion = 0;
-            userAnswers = [];
-            document.getElementById('results').classList.remove('show');
-            document.getElementById('questionsContainer').style.display = 'block';
-            document.getElementById('startScreen').style.display = 'block';
-            document.querySelectorAll('.option').forEach(opt => {
-                opt.classList.remove('selected', 'correct', 'incorrect');
-            });
-            document.querySelectorAll('input[type="radio"]').forEach(radio => {
-                radio.checked = false;
-            });
-            document.getElementById('progressFill').style.width = '0%';
-        }
-    </script>
+function restartQuiz(){
+    location.reload();
+}
+
+</script>
+
 </body>
-
 </html>
