@@ -1,589 +1,150 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quiz — Pensamento Computacional</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<title>Quiz - Desenvolvimento Web</title>
+
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#080810;--s1:#0f0f1a;--s2:#151525;--s3:#1c1c30;
-  --border:#252540;--border2:#2e2e50;
-  --a:#6c63ff;--a2:#ff6584;--a3:#43e8a0;
-  --a-glow:rgba(108,99,255,.25);
-  --green:#43e8a0;--green-glow:rgba(67,232,160,.2);
-  --red:#ff5f7e;--red-glow:rgba(255,95,126,.2);
-  --yellow:#ffd166;
-  --text:#eeeef8;--muted:#6b6b90;--muted2:#4a4a6a;
-  --r:16px;--r2:12px;
-  --font:'Outfit',sans-serif;--mono:'JetBrains Mono',monospace;
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial; padding: 20px; background:#f5f5f5; }
+
+.screen { display: none; }
+.screen.active { display: block; }
+
+.card { background: white; padding: 20px; border-radius: 10px; }
+
+button { padding:10px; margin-top:10px; cursor:pointer; }
+
+.opt {
+  border:1px solid #ccc;
+  padding:10px;
+  margin:5px 0;
+  cursor:pointer;
 }
-html{scroll-behavior:smooth}
-body{
-  font-family:var(--font);background:var(--bg);color:var(--text);
-  min-height:100vh;display:flex;flex-direction:column;
-  align-items:center;justify-content:flex-start;
-  padding:32px 16px 60px;overflow-x:hidden;
-}
-.ambient{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
-.ambient span{position:absolute;border-radius:50%;filter:blur(80px);opacity:.12}
-.amb1{width:600px;height:600px;background:var(--a);top:-200px;left:-150px;animation:drift1 18s ease-in-out infinite alternate}
-.amb2{width:500px;height:500px;background:var(--a2);bottom:-150px;right:-120px;animation:drift2 22s ease-in-out infinite alternate}
-.amb3{width:300px;height:300px;background:var(--a3);top:40%;left:60%;animation:drift3 14s ease-in-out infinite alternate}
-@keyframes drift1{to{transform:translate(60px,80px)}}
-@keyframes drift2{to{transform:translate(-50px,-70px)}}
-@keyframes drift3{to{transform:translate(-40px,50px)}}
+.opt:hover { background:#eee; }
+.correct { background:#c8f7c5; }
+.wrong { background:#f7c5c5; }
 
-.shell{position:relative;z-index:1;width:100%;max-width:700px}
-
-.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px}
-.logo{font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.logo span{color:var(--a)}
-.mode-toggle{display:flex;background:var(--s2);border:1px solid var(--border);border-radius:99px;padding:3px;gap:2px}
-.mode-btn{font-family:var(--font);font-size:.72rem;font-weight:600;padding:5px 14px;border-radius:99px;border:none;cursor:pointer;color:var(--muted);background:transparent;transition:all .2s;letter-spacing:.04em}
-.mode-btn.active{background:var(--a);color:#fff}
-
-.card{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.5)}
-
-.screen{display:none}
-.screen.active{display:block;animation:slideUp .35s cubic-bezier(.25,.46,.45,.94) both}
-@keyframes slideUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-@keyframes pop{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
-@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-
-/* ── START ── */
-#startScreen{padding:44px 36px 40px}
-.start-hero{text-align:center;margin-bottom:36px}
-.start-emoji{font-size:3.2rem;margin-bottom:18px;display:block}
-.start-title{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:800;line-height:1.15;background:linear-gradient(130deg,#fff 20%,var(--a) 70%,var(--a2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:10px}
-.start-sub{color:var(--muted);font-size:.95rem;line-height:1.6}
-.config-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:28px}
-.config-box{background:var(--s2);border:1px solid var(--border);border-radius:var(--r2);padding:18px 16px;text-align:center;cursor:pointer;transition:border-color .2s,box-shadow .2s,transform .15s;position:relative;overflow:hidden}
-.config-box::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--a),var(--a2));opacity:0;transition:opacity .2s}
-.config-box:hover{border-color:var(--a);transform:translateY(-2px);box-shadow:0 8px 24px var(--a-glow)}
-.config-box.selected{border-color:var(--a);box-shadow:0 0 0 1px var(--a),0 8px 24px var(--a-glow)}
-.config-box.selected::after{opacity:.07}
-.config-icon{font-size:1.6rem;margin-bottom:6px;position:relative;z-index:1}
-.config-label{font-size:.85rem;font-weight:700;color:var(--text);position:relative;z-index:1}
-.config-desc{font-size:.72rem;color:var(--muted);margin-top:3px;position:relative;z-index:1}
-.divider{display:flex;align-items:center;gap:12px;margin-bottom:24px;color:var(--muted2);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase}
-.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
-.q-count-row{display:flex;align-items:center;justify-content:space-between;background:var(--s2);border:1px solid var(--border);border-radius:var(--r2);padding:14px 18px;margin-bottom:28px}
-.q-count-label{font-size:.85rem;color:var(--muted);font-weight:500}
-.q-count-controls{display:flex;align-items:center;gap:16px}
-.q-count-btn{width:30px;height:30px;border-radius:8px;border:1px solid var(--border2);background:var(--s3);color:var(--text);font-size:1rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;font-family:var(--font)}
-.q-count-btn:hover{border-color:var(--a);color:var(--a)}
-.q-count-val{font-family:var(--mono);font-size:1.1rem;font-weight:600;color:var(--a);min-width:28px;text-align:center}
-.start-btn{width:100%;padding:16px;border:none;border-radius:var(--r2);background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;font-family:var(--font);font-size:1rem;font-weight:700;cursor:pointer;letter-spacing:.04em;transition:opacity .2s,transform .15s,box-shadow .2s;box-shadow:0 8px 32px var(--a-glow)}
-.start-btn:hover{opacity:.9;transform:translateY(-2px);box-shadow:0 12px 40px var(--a-glow)}
-.start-btn:active{transform:translateY(0)}
-
-/* ── QUIZ ── */
-.quiz-top{display:flex;align-items:center;justify-content:space-between;padding:16px 24px 0;gap:12px}
-.q-counter{font-family:var(--mono);font-size:.78rem;font-weight:600;color:var(--muted)}
-.q-counter strong{color:var(--a)}
-.timer-wrap{display:flex;align-items:center;gap:8px;background:var(--s2);border:1px solid var(--border);border-radius:99px;padding:5px 14px}
-.timer-icon{font-size:.85rem}
-.timer-val{font-family:var(--mono);font-size:.82rem;font-weight:600;color:var(--text);transition:color .3s;min-width:30px;text-align:center}
-.timer-val.warn{color:var(--yellow)}
-.timer-val.danger{color:var(--red);animation:pulse-t .5s ease infinite alternate}
-@keyframes pulse-t{to{opacity:.5}}
-.live-score{font-family:var(--mono);font-size:.78rem;font-weight:600;color:var(--muted)}
-.live-score .s-ok{color:var(--green)}
-.live-score .s-no{color:var(--red)}
-.prog-wrap{padding:12px 24px 0}
-.prog-track{height:5px;background:var(--s3);border-radius:99px;overflow:hidden}
-.prog-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--a),var(--a2));transition:width .5s cubic-bezier(.4,0,.2,1)}
-.mini-dots{display:flex;flex-wrap:wrap;gap:5px;padding:10px 24px 0}
-.mini-dot{width:9px;height:9px;border-radius:50%;background:var(--s3);border:1px solid var(--border2);transition:all .3s;cursor:pointer}
-.mini-dot:hover{border-color:var(--a)}
-.mini-dot.cur{background:var(--a);border-color:var(--a);box-shadow:0 0 6px var(--a-glow)}
-.mini-dot.ok{background:var(--green);border-color:var(--green)}
-.mini-dot.no{background:var(--red);border-color:var(--red)}
-.q-body{padding:24px 24px 8px}
-.q-tag{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--a);margin-bottom:10px;display:flex;align-items:center;gap:6px}
-.q-tag::before{content:'';width:18px;height:2px;background:var(--a);border-radius:2px}
-.q-text{font-size:1.15rem;font-weight:600;line-height:1.5;color:var(--text)}
-.opts{padding:12px 24px 16px;display:flex;flex-direction:column;gap:9px}
-.opt{display:flex;align-items:center;gap:14px;background:var(--s2);border:1.5px solid var(--border);border-radius:var(--r2);padding:13px 16px;cursor:pointer;transition:border-color .18s,background .18s,transform .15s,box-shadow .18s;position:relative;overflow:hidden;user-select:none}
-.opt::after{content:'';position:absolute;inset:0;background:var(--a);opacity:0;transition:opacity .18s}
-.opt:hover:not(.locked){border-color:rgba(108,99,255,.6);transform:translateX(4px);box-shadow:0 4px 16px var(--a-glow)}
-.opt:hover:not(.locked)::after{opacity:.06}
-.opt-key{width:30px;height:30px;border-radius:8px;background:var(--s3);color:var(--muted);font-size:.78rem;font-weight:700;font-family:var(--mono);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid var(--border2);transition:all .2s;position:relative;z-index:1}
-.opt-label{font-size:.93rem;color:var(--text);flex:1;position:relative;z-index:1;line-height:1.4}
-.opt-check{font-size:1.1rem;position:relative;z-index:1;opacity:0;transition:opacity .2s;margin-left:auto;flex-shrink:0}
-.opt.correct{border-color:var(--green);background:rgba(67,232,160,.06);animation:pop .3s ease}
-.opt.correct .opt-key{background:var(--green);color:#050505;border-color:var(--green)}
-.opt.correct .opt-check{opacity:1}
-.opt.wrong{border-color:var(--red);background:rgba(255,95,126,.06);animation:shake .3s ease}
-.opt.wrong .opt-key{background:var(--red);color:#fff;border-color:var(--red)}
-.opt.wrong .opt-check{opacity:1}
-.opt.reveal{border-color:var(--green);background:rgba(67,232,160,.04)}
-.opt.reveal .opt-key{background:var(--green);color:#050505;border-color:var(--green)}
-.opt.reveal .opt-check{opacity:1}
-.opt.locked{cursor:default;transform:none!important;box-shadow:none!important}
-.feedback-toast{margin:0 24px 8px;padding:10px 16px;border-radius:var(--r2);font-size:.85rem;font-weight:600;display:flex;align-items:center;gap:8px;opacity:0;transform:translateY(-6px);transition:opacity .25s,transform .25s}
-.feedback-toast.show{opacity:1;transform:translateY(0)}
-.feedback-toast.ok{background:rgba(67,232,160,.12);border:1px solid rgba(67,232,160,.25);color:var(--green)}
-.feedback-toast.no{background:rgba(255,95,126,.12);border:1px solid rgba(255,95,126,.25);color:var(--red)}
-.q-nav{display:flex;justify-content:space-between;align-items:center;padding:8px 24px 24px;gap:12px}
-.btn{font-family:var(--font);font-size:.82rem;font-weight:700;padding:10px 20px;border-radius:10px;border:none;cursor:pointer;transition:all .18s;letter-spacing:.04em}
-.btn:hover{transform:translateY(-1px)}
-.btn:active{transform:translateY(0)}
-.btn:disabled{opacity:.3;cursor:default;transform:none!important}
-.btn-ghost{background:var(--s2);color:var(--muted);border:1px solid var(--border)}
-.btn-ghost:hover:not(:disabled){border-color:var(--border2);color:var(--text)}
-.btn-next{background:linear-gradient(135deg,var(--a),rgba(108,99,255,.8));color:#fff;box-shadow:0 4px 16px var(--a-glow)}
-.btn-finish{background:linear-gradient(135deg,var(--green),#2fc882);color:#050505;box-shadow:0 4px 16px var(--green-glow)}
-.btn-skip{background:transparent;color:var(--muted);font-size:.75rem;padding:8px 14px;border:1px solid var(--border)}
-.btn-skip:hover{color:var(--text);border-color:var(--border2)}
-
-/* ── RESULTS ── */
-#resultsScreen{padding:36px 32px 40px}
-.res-top{text-align:center;margin-bottom:28px}
-.gauge-wrap{position:relative;width:160px;height:160px;margin:0 auto 20px}
-.gauge-wrap svg{transform:rotate(-90deg)}
-.g-bg{fill:none;stroke:var(--s3);stroke-width:12}
-.g-fill{fill:none;stroke-width:12;stroke-linecap:round;transition:stroke-dashoffset 1.1s cubic-bezier(.4,0,.2,1)}
-.gauge-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.gauge-pct{font-size:2.2rem;font-weight:800;font-family:var(--mono);line-height:1}
-.gauge-sub{font-size:.68rem;color:var(--muted);margin-top:3px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
-.res-headline{font-size:1.5rem;font-weight:800;margin-bottom:6px}
-.res-msg{color:var(--muted);font-size:.9rem}
-.stats-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
-.stat-box{background:var(--s2);border:1px solid var(--border);border-radius:var(--r2);padding:16px 12px;text-align:center}
-.stat-val{font-size:1.8rem;font-weight:800;font-family:var(--mono);line-height:1;margin-bottom:4px}
-.stat-lbl{font-size:.7rem;color:var(--muted);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
-.v-ok{color:var(--green)}.v-no{color:var(--red)}.v-acc{color:var(--a)}
-.review-title{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:8px}
-.review-title::after{content:'';flex:1;height:1px;background:var(--border)}
-.review-list{display:flex;flex-direction:column;gap:10px;margin-bottom:28px;max-height:340px;overflow-y:auto;padding-right:4px}
-.review-list::-webkit-scrollbar{width:4px}
-.review-list::-webkit-scrollbar-track{background:transparent}
-.review-list::-webkit-scrollbar-thumb{background:var(--border2);border-radius:99px}
-.review-item{background:var(--s2);border:1px solid var(--border);border-radius:var(--r2);padding:14px 16px;border-left:3px solid var(--red)}
-.review-item.ok{border-left-color:var(--green)}
-.review-q{font-size:.85rem;font-weight:600;color:var(--text);margin-bottom:8px;line-height:1.4}
-.review-answers{display:flex;flex-direction:column;gap:4px}
-.review-ans{font-size:.78rem;display:flex;align-items:flex-start;gap:6px}
-.rev-icon{flex-shrink:0;margin-top:1px}
-.rev-txt{line-height:1.4}
-.rev-ok{color:var(--green)}.rev-no{color:var(--red)}.rev-gray{color:var(--muted)}
-.res-actions{display:flex;gap:12px}
-.res-actions .btn{flex:1;padding:14px}
-.btn-retry{background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;box-shadow:0 6px 24px var(--a-glow)}
-.btn-home{background:var(--s2);color:var(--muted);border:1px solid var(--border)}
-.btn-home:hover{color:var(--text);border-color:var(--border2)}
-.hidden{display:none!important}
-@media(max-width:480px){
-  #startScreen,#resultsScreen{padding:28px 18px 32px}
-  .q-body,.opts,.q-nav,.quiz-top,.prog-wrap,.mini-dots{padding-left:16px;padding-right:16px}
-  .config-grid{grid-template-columns:1fr 1fr}
-}
 </style>
 </head>
 <body>
-<div class="ambient"><span class="amb1"></span><span class="amb2"></span><span class="amb3"></span></div>
-<div class="shell">
 
-  <div class="topbar">
-    <div class="logo">Quiz<span>•</span>PC</div>
-    <div class="mode-toggle">
-      <button class="mode-btn active" id="modeRapido" onclick="setMode('rapido')">⚡ Rápido</button>
-      <button class="mode-btn" id="modeEstudo" onclick="setMode('estudo')">📖 Estudo</button>
-    </div>
-  </div>
+<div id="startScreen" class="screen active card">
+  <h1>Quiz - Desenvolvimento Web</h1>
+  <button onclick="startQuiz()">Começar</button>
+</div>
 
-  <div class="card">
+<div id="quizScreen" class="screen card">
+  <h2 id="qText"></h2>
+  <div id="opts"></div>
+  <button onclick="nextQuestion()">Próxima</button>
+</div>
 
-    <!-- START -->
-    <div id="startScreen" class="screen active">
-      <div class="start-hero">
-        <span class="start-emoji">🧠</span>
-        <h1 class="start-title">Pensamento<br>Computacional</h1>
-        <p class="start-sub">Teste seus conhecimentos com questões embaralhadas.<br>Escolha o modo e o número de perguntas.</p>
-      </div>
-      <div class="divider">Modo de jogo</div>
-      <div class="config-grid">
-        <div class="config-box selected" id="cfgRapido" onclick="setMode('rapido')">
-          <div class="config-icon">⚡</div>
-          <div class="config-label">Rápido</div>
-          <div class="config-desc">20s por questão</div>
-        </div>
-        <div class="config-box" id="cfgEstudo" onclick="setMode('estudo')">
-          <div class="config-icon">📖</div>
-          <div class="config-label">Estudo</div>
-          <div class="config-desc">Sem limite de tempo</div>
-        </div>
-      </div>
-      <div class="divider">Número de questões</div>
-      <div class="q-count-row">
-        <span class="q-count-label">Quantas perguntas?</span>
-        <div class="q-count-controls">
-          <button class="q-count-btn" onclick="changeCount(-5)">−</button>
-          <span class="q-count-val" id="countDisplay">10</span>
-          <button class="q-count-btn" onclick="changeCount(+5)">+</button>
-        </div>
-      </div>
-      <button class="start-btn" onclick="startQuiz()">Iniciar Questionário →</button>
-    </div>
-
-    <!-- QUIZ -->
-    <div id="quizScreen" class="screen">
-      <div class="quiz-top">
-        <span class="q-counter">Questão <strong id="qNum">1</strong> de <strong id="qTotal">10</strong></span>
-        <div class="timer-wrap" id="timerWrap">
-          <span class="timer-icon">⏱</span>
-          <span class="timer-val" id="timerVal">20</span>
-        </div>
-        <span class="live-score"><span class="s-ok" id="lsOk">0</span>✓ &nbsp;<span class="s-no" id="lsNo">0</span>✗</span>
-      </div>
-      <div class="prog-wrap">
-        <div class="prog-track"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
-      </div>
-      <div class="mini-dots" id="miniDots"></div>
-      <div class="q-body">
-        <div class="q-tag" id="qTag">Questão 1</div>
-        <div class="q-text" id="qText"></div>
-      </div>
-      <div class="opts" id="opts"></div>
-      <div class="feedback-toast" id="feedbackToast"></div>
-      <div class="q-nav">
-        <button class="btn btn-ghost" id="btnPrev" onclick="nav(-1)">← Anterior</button>
-        <button class="btn btn-skip" id="btnSkip" onclick="skipQuestion()">Pular</button>
-        <button class="btn btn-next" id="btnNext" onclick="nav(+1)">Próxima →</button>
-      </div>
-    </div>
-
-    <!-- RESULTS -->
-    <div id="resultsScreen" class="screen">
-      <div class="res-top">
-        <div class="gauge-wrap">
-          <svg viewBox="0 0 160 160" width="160" height="160">
-            <defs>
-              <linearGradient id="gg" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#6c63ff"/>
-                <stop offset="100%" stop-color="#43e8a0"/>
-              </linearGradient>
-            </defs>
-            <circle class="g-bg" cx="80" cy="80" r="66"/>
-            <circle class="g-fill" id="gFill" cx="80" cy="80" r="66"
-              stroke="url(#gg)" stroke-dasharray="414.7" stroke-dashoffset="414.7"/>
-          </svg>
-          <div class="gauge-label">
-            <span class="gauge-pct" id="gPct">0%</span>
-            <span class="gauge-sub">Acerto</span>
-          </div>
-        </div>
-        <div class="res-headline" id="resHeadline"></div>
-        <div class="res-msg" id="resMsg"></div>
-      </div>
-      <div class="stats-strip">
-        <div class="stat-box"><div class="stat-val v-ok" id="rOk">0</div><div class="stat-lbl">Corretas</div></div>
-        <div class="stat-box"><div class="stat-val v-no" id="rNo">0</div><div class="stat-lbl">Erradas</div></div>
-        <div class="stat-box"><div class="stat-val v-acc" id="rSkip">0</div><div class="stat-lbl">Puladas</div></div>
-      </div>
-      <div class="review-title">Revisão de Respostas</div>
-      <div class="review-list" id="reviewList"></div>
-      <div class="res-actions">
-        <button class="btn btn-home" onclick="goHome()">↩ Início</button>
-        <button class="btn btn-retry" onclick="retryQuiz()">↺ Refazer</button>
-      </div>
-    </div>
-
-  </div>
+<div id="resultScreen" class="screen card">
+  <h2>Resultado</h2>
+  <p id="result"></p>
+  <button onclick="location.reload()">Reiniciar</button>
 </div>
 
 <script>
 const ALL_QUESTIONS = [
-  {"question":"O que caracteriza o refinamento sucessivo?","options":["Resolver tudo de forma imediata","Aprimorar a solução em etapas progressivas","Evitar revisões","Ignorar testes"],"correct":1},
-  {"question":"Qual é o principal objetivo da validação de soluções?","options":["Aumentar a complexidade","Garantir que atende aos requisitos","Reduzir documentação","Evitar testes"],"correct":1},
-  {"question":"Um erro comum ao resolver problemas é:","options":["Analisar o contexto","Testar hipóteses","Ignorar o entendimento do problema","Dividir tarefas"],"correct":2},
-  {"question":"Visão sistêmica envolve:","options":["Analisar partes isoladas","Ignorar relações","Compreender interações do sistema","Focar apenas no código"],"correct":2},
-  {"question":"Feedback loop significa:","options":["Erro no sistema","Retorno de informação ao processo","Código duplicado","Falha de execução"],"correct":1},
-  {"question":"Causa-raiz é:","options":["Sintoma visível","Erro superficial","Origem real do problema","Teste falho"],"correct":2},
-  {"question":"O diagrama de fluxo serve para:","options":["Executar código","Visualizar etapas de um processo","Compilar programas","Testar software"],"correct":1},
-  {"question":"Decomposição ajuda a:","options":["Aumentar dificuldade","Resolver problemas menores separadamente","Ignorar etapas","Eliminar testes"],"correct":1},
-  {"question":"Reconhecimento de padrões permite:","options":["Ignorar soluções anteriores","Reaproveitar soluções similares","Aumentar erros","Evitar análise"],"correct":1},
-  {"question":"Abstração consiste em:","options":["Focar em detalhes irrelevantes","Ignorar estrutura","Destacar informações importantes","Eliminar lógica"],"correct":2},
-  {"question":"Algoritmo é:","options":["Um erro de sistema","Sequência lógica de passos","Código inválido","Interface gráfica"],"correct":1},
-  {"question":"Requisitos funcionais definem:","options":["A aparência","As funcionalidades","Os erros","A performance"],"correct":1},
-  {"question":"Pseudoalgoritmo serve para:","options":["Executar diretamente","Planejar solução","Testar hardware","Compilar código"],"correct":1},
-  {"question":"Tentativa e erro eficiente envolve:","options":["Testar sem critério","Aprender com falhas","Ignorar resultados","Evitar testes"],"correct":1},
-  {"question":"Pensamento computacional inclui:","options":["Apenas programação","Estratégias de resolução de problemas","Evitar lógica","Ignorar padrões"],"correct":1},
-  {"question":"Um fluxograma representa:","options":["Código executável","Passos de um processo","Erros do sistema","Banco de dados"],"correct":1},
-  {"question":"Ishikawa é usado para:","options":["Executar código","Analisar causas","Criar interface","Testar software"],"correct":1},
-  {"question":"Erro de raciocínio comum:","options":["Verificar hipóteses","Pular análise","Dividir tarefas","Testar soluções"],"correct":1},
-  {"question":"Sistema é:","options":["Parte isolada","Conjunto de elementos interligados","Erro lógico","Código simples"],"correct":1},
-  {"question":"Feedback positivo:","options":["Reduz efeitos","Amplifica resultados","Elimina erros","Ignora entrada"],"correct":1},
-  {"question":"Feedback negativo:","options":["Amplifica saída","Equilibra sistema","Ignora resultado","Duplica erro"],"correct":1},
-  {"question":"Mapear sistema ajuda a:","options":["Confundir solução","Visualizar relações","Eliminar dados","Ignorar fluxo"],"correct":1},
-  {"question":"Problema grande deve ser:","options":["Ignorado","Dividido em partes","Resolvido direto","Evitado"],"correct":1},
-  {"question":"Teste de solução serve para:","options":["Ignorar erros","Validar funcionamento","Eliminar código","Evitar análise"],"correct":1},
-  {"question":"Fluxo representa:","options":["Código","Sequência de etapas","Erro","Interface"],"correct":1},
-  {"question":"Pensamento lógico ajuda a:","options":["Criar erros","Resolver problemas","Ignorar dados","Evitar testes"],"correct":1},
-  {"question":"Análise de problema inclui:","options":["Ignorar contexto","Entender requisitos","Evitar solução","Pular etapas"],"correct":1},
-  {"question":"Solução eficiente é:","options":["Sem testes","Validada e funcional","Complexa","Incompleta"],"correct":1},
-  {"question":"Erro lógico ocorre quando:","options":["Código compila","Resultado é incorreto","Não executa","Interface falha"],"correct":1},
-  {"question":"Processo iterativo é:","options":["Único passo","Repetição com melhorias","Erro contínuo","Código fixo"],"correct":1},
-  {"question":"Solução parcial:","options":["Resolve tudo","Resolve parte do problema","Ignora problema","Elimina análise"],"correct":1},
-  {"question":"Análise sistêmica considera:","options":["Parte isolada","Todo o sistema","Erro específico","Código único"],"correct":1},
-  {"question":"Estratégia eficaz envolve:","options":["Ignorar testes","Planejamento","Evitar análise","Eliminar dados"],"correct":1},
-  {"question":"Teste contínuo ajuda a:","options":["Criar erros","Melhorar qualidade","Ignorar falhas","Evitar solução"],"correct":1},
-  {"question":"Problemas complexos exigem:","options":["Soluções rápidas","Análise detalhada","Ignorar etapas","Evitar divisão"],"correct":1},
-  {"question":"Fluxograma ajuda a:","options":["Executar código","Entender lógica","Ignorar fluxo","Eliminar etapas"],"correct":1},
-  {"question":"Revisão de solução serve para:","options":["Ignorar erros","Aprimorar solução","Eliminar testes","Evitar análise"],"correct":1},
-  {"question":"Erro de análise ocorre quando:","options":["Entende problema","Interpreta errado","Testa solução","Divide tarefas"],"correct":1},
-  {"question":"Modelo mental ajuda a:","options":["Confundir lógica","Organizar pensamento","Ignorar dados","Eliminar solução"],"correct":1},
-  {"question":"Planejamento é importante para:","options":["Evitar erros","Estruturar solução","Ignorar etapas","Eliminar testes"],"correct":1},
-  {"question":"Estrutura lógica é:","options":["Desorganizada","Sequencial","Aleatória","Inexistente"],"correct":1},
-  {"question":"Erro comum é:","options":["Planejar","Testar","Pular etapas","Analisar"],"correct":2},
-  {"question":"Boa solução deve ser:","options":["Complexa","Testada","Incompleta","Confusa"],"correct":1},
-  {"question":"Iteração significa:","options":["Repetição","Erro","Fim","Código"],"correct":0},
-  {"question":"Abordagem correta inclui:","options":["Ignorar problema","Entender contexto","Evitar testes","Eliminar lógica"],"correct":1},
-  {"question":"Dividir problema ajuda a:","options":["Complicar","Simplificar solução","Ignorar etapas","Eliminar análise"],"correct":1},
-  {"question":"Teste final serve para:","options":["Ignorar erros","Confirmar solução","Eliminar código","Evitar validação"],"correct":1}
+  {question:"O que é um sistema?",options:["Um conjunto de elementos que trabalham juntos","Um navegador","Uma linguagem","Banco"],correct:0},
+  {question:"Partes de um sistema:",options:["Entrada, processamento e saída","HTML, CSS, JS","Cliente e servidor","Login e senha"],correct:0},
+  {question:"Entrada é:",options:["Resultado","Dados inseridos","Erro","Código"],correct:1},
+  {question:"Processamento é:",options:["Entrada","Transformação","Saída","Banco"],correct:1},
+  {question:"Saída é:",options:["Entrada","Resultado","Código","Erro"],correct:1},
+
+  {question:"Cliente é:",options:["Servidor","Usuário","Banco","CSS"],correct:1},
+  {question:"Servidor faz:",options:["Mostrar tela","Processar","CSS","HTML"],correct:1},
+  {question:"HTTP é:",options:["Protocolo","Linguagem","Banco","Servidor"],correct:0},
+  {question:"HTTPS é:",options:["Seguro","Lento","Inseguro","Local"],correct:0},
+
+  {question:"Interface é:",options:["Comunicação usuário-sistema","Banco","Código","Servidor"],correct:0},
+  {question:"GUI é:",options:["Gráfica","Texto","Código","Banco"],correct:0},
+  {question:"IHC estuda:",options:["Usuários","Banco","CSS","Servidor"],correct:0},
+
+  {question:"HTML significa:",options:["Hyper Text Markup Language","Outra coisa","Código","Banco"],correct:0},
+  {question:"HTML serve para:",options:["Estrutura","Estilo","Banco","Servidor"],correct:0},
+  {question:"Maior título:",options:["h1","h6","title","p"],correct:0},
+  {question:"Parágrafo:",options:["p","div","text","span"],correct:0},
+
+  {question:"Lista não ordenada:",options:["ul","ol","li","list"],correct:0},
+  {question:"Lista ordenada:",options:["ol","ul","li","list"],correct:0},
+
+  {question:"Link:",options:["a","link","href","url"],correct:0},
+  {question:"Atributo link:",options:["href","src","alt","url"],correct:0},
+
+  {question:"Imagem:",options:["img","image","pic","src"],correct:0},
+  {question:"Alt serve para:",options:["Descrição","Cor","Tamanho","Link"],correct:0},
+
+  {question:"Formulário:",options:["form","input","label","button"],correct:0},
+
+  {question:"CSS significa:",options:["Cascading Style Sheets","Outro","Código","Banco"],correct:0},
+  {question:"CSS serve para:",options:["Visual","Estrutura","Banco","Servidor"],correct:0},
+
+  {question:"CSS inline:",options:["Na tag","Arquivo","Servidor","Banco"],correct:0},
+  {question:"CSS interno:",options:["style","body","html","head"],correct:0},
+  {question:"CSS externo:",options:["arquivo","tag","script","banco"],correct:0},
+
+  {question:"Classe:",options:[".classe","#classe","classe","*classe"],correct:0},
+  {question:"ID:",options:["#id",".id","id","*id"],correct:0},
+
+  {question:"Box model:",options:["margin padding border","flex","html","cores"],correct:0},
+  {question:"Padding:",options:["Interno","Externo","Borda","Fonte"],correct:0},
+  {question:"Margin:",options:["Externo","Interno","Borda","Fonte"],correct:0},
+
+  {question:"Flexbox:",options:["Layout","Texto","Banco","Imagem"],correct:0},
+  {question:"display flex:",options:["Ativa flex","Desativa","Cor","Fonte"],correct:0},
+
+  {question:"Responsividade:",options:["Adaptar telas","Banco","Servidor","Código"],correct:0},
+  {question:"Media query:",options:["Responsivo","Banco","Texto","Imagem"],correct:0}
 ];
 
-const LETTERS = ['A','B','C','D'];
-let mode = 'rapido', questionCount = 10;
-let deck = [], current = 0, answers = [];
-let timerInterval = null, timerLeft = 20;
-const TIMER_SEC = 20;
+let current = 0;
+let score = 0;
 
-function setMode(m) {
-  mode = m;
-  ['rapido','estudo'].forEach(x => {
-    document.getElementById('mode'+x.charAt(0).toUpperCase()+x.slice(1)).classList.toggle('active', x===m);
-    document.getElementById('cfg'+x.charAt(0).toUpperCase()+x.slice(1)).classList.toggle('selected', x===m);
+function startQuiz(){
+  document.getElementById("startScreen").classList.remove("active");
+  document.getElementById("quizScreen").classList.add("active");
+  showQuestion();
+}
+
+function showQuestion(){
+  let q = ALL_QUESTIONS[current];
+  document.getElementById("qText").innerText = q.question;
+
+  let opts = "";
+  q.options.forEach((opt,i)=>{
+    opts += `<div class="opt" onclick="checkAnswer(${i})">${opt}</div>`;
   });
-  document.getElementById('timerWrap').style.opacity = m==='estudo'?.3:1;
+  document.getElementById("opts").innerHTML = opts;
 }
 
-function changeCount(d) {
-  questionCount = Math.min(ALL_QUESTIONS.length, Math.max(5, questionCount + d));
-  document.getElementById('countDisplay').textContent = questionCount;
-}
+function checkAnswer(i){
+  let q = ALL_QUESTIONS[current];
+  if(i === q.correct) score++;
 
-function shuffle(arr){ return [...arr].sort(()=>Math.random()-.5) }
-
-function buildDeck() {
-  deck = shuffle(ALL_QUESTIONS).slice(0, questionCount).map(q => {
-    const ct = q.options[q.correct];
-    const opts = shuffle(q.options);
-    return { question: q.question, options: opts, correct: opts.indexOf(ct) };
-  });
-}
-
-function startQuiz() {
-  buildDeck();
-  answers = new Array(deck.length).fill(null);
-  current = 0;
-  showScreen('quizScreen');
-  buildMiniDots();
-  renderQ(0);
-}
-
-function retryQuiz() { startQuiz(); }
-function goHome() { stopTimer(); showScreen('startScreen'); }
-
-function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-}
-
-function buildMiniDots() {
-  const wrap = document.getElementById('miniDots');
-  wrap.innerHTML = '';
-  deck.forEach((_,i) => {
-    const d = document.createElement('div');
-    d.className = 'mini-dot'+(i===0?' cur':'');
-    d.id = 'md'+i;
-    d.onclick = () => { if(answers[i]!==null||i===current) nav(i-current); };
-    wrap.appendChild(d);
+  document.querySelectorAll(".opt").forEach((el,index)=>{
+    if(index === q.correct) el.classList.add("correct");
+    else if(index === i) el.classList.add("wrong");
   });
 }
 
-function updateAllDots() {
-  deck.forEach((_,i) => {
-    const d = document.getElementById('md'+i);
-    if (!d) return;
-    d.classList.remove('cur','ok','no');
-    if (i===current){ d.classList.add('cur'); return; }
-    const a = answers[i];
-    if (!a||a.skipped) return;
-    d.classList.add(a.chosen===a.correct?'ok':'no');
-  });
-}
-
-function updateLiveScore() {
-  let ok=0,no=0;
-  answers.forEach((a,i)=>{ if(!a||a.skipped)return; if(a.chosen===deck[i].correct)ok++;else no++; });
-  document.getElementById('lsOk').textContent = ok;
-  document.getElementById('lsNo').textContent = no;
-}
-
-function renderQ(i) {
-  stopTimer();
-  current = i;
-  const q = deck[i], a = answers[i];
-  const isAnswered = a!==null, isLast = i===deck.length-1;
-
-  document.getElementById('qNum').textContent = i+1;
-  document.getElementById('qTotal').textContent = deck.length;
-  document.getElementById('qTag').textContent = 'Questão '+(i+1);
-  document.getElementById('qText').textContent = q.question;
-  document.getElementById('progFill').style.width = ((i/deck.length)*100)+'%';
-  updateLiveScore(); updateAllDots();
-
-  document.getElementById('opts').innerHTML = q.options.map((opt,j)=>{
-    let cls='opt', icon='';
-    if(isAnswered){
-      cls+=' locked';
-      if(a.skipped){ if(j===q.correct){cls+=' reveal';icon='✓';} }
-      else{
-        if(j===a.chosen&&j!==q.correct){cls+=' wrong';icon='✗';}
-        else if(j===q.correct){cls+=' correct';icon='✓';}
-      }
-    }
-    return `<div class="${cls}" id="opt${j}" onclick="pickAnswer(${i},${j})">
-      <div class="opt-key">${LETTERS[j]}</div>
-      <div class="opt-label">${opt}</div>
-      <div class="opt-check">${icon}</div>
-    </div>`;
-  }).join('');
-
-  // feedback
-  const t = document.getElementById('feedbackToast');
-  t.className = 'feedback-toast';
-  if(isAnswered){
-    if(a.skipped){ t.className='feedback-toast no show'; t.innerHTML='⏩ Questão pulada'; }
-    else{ showFeedback(a.chosen===a.correct); }
+function nextQuestion(){
+  current++;
+  if(current >= ALL_QUESTIONS.length){
+    showResult();
+  } else {
+    showQuestion();
   }
-
-  document.getElementById('btnPrev').disabled = i===0;
-  document.getElementById('btnSkip').classList.toggle('hidden', isAnswered);
-  const nb = document.getElementById('btnNext');
-  nb.textContent = isLast?'✓ Finalizar':'Próxima →';
-  nb.className = 'btn '+(isLast?'btn-finish':'btn-next');
-  nb.onclick = isLast ? finishQuiz : ()=>nav(+1);
-
-  if(!isAnswered&&mode==='rapido') startTimer(i);
-  if(mode==='estudo') document.getElementById('timerVal').textContent='∞';
 }
 
-function showFeedback(correct) {
-  const t = document.getElementById('feedbackToast');
-  t.className = 'feedback-toast '+(correct?'ok':'no')+' show';
-  t.innerHTML = correct?'✅ Correto! Muito bem!':'❌ Incorreto — veja a resposta correta acima.';
-}
-
-function pickAnswer(qIdx, optIdx) {
-  if(answers[qIdx]!==null) return;
-  stopTimer();
-  const q = deck[qIdx];
-  answers[qIdx] = { chosen:optIdx, correct:q.correct, skipped:false };
-  document.querySelectorAll('.opt').forEach((el,j)=>{
-    el.classList.add('locked');
-    if(j===optIdx&&j!==q.correct){ el.classList.add('wrong'); el.querySelector('.opt-check').textContent='✗'; el.querySelector('.opt-check').style.opacity=1; }
-    if(j===q.correct){ el.classList.add('correct'); el.querySelector('.opt-check').textContent='✓'; el.querySelector('.opt-check').style.opacity=1; }
-  });
-  showFeedback(optIdx===q.correct);
-  updateAllDots(); updateLiveScore();
-  document.getElementById('btnSkip').classList.add('hidden');
-  setTimeout(()=>{ if(current===qIdx){ if(qIdx===deck.length-1)finishQuiz();else nav(+1); } }, 1300);
-}
-
-function skipQuestion() {
-  const i = current;
-  if(answers[i]!==null) return;
-  stopTimer();
-  answers[i] = { chosen:null, correct:deck[i].correct, skipped:true };
-  document.querySelectorAll('.opt').forEach((el,j)=>{
-    el.classList.add('locked');
-    if(j===deck[i].correct){ el.classList.add('reveal'); el.querySelector('.opt-check').textContent='✓'; el.querySelector('.opt-check').style.opacity=1; }
-  });
-  const t = document.getElementById('feedbackToast');
-  t.className='feedback-toast no show'; t.innerHTML='⏩ Questão pulada';
-  document.getElementById('btnSkip').classList.add('hidden');
-  updateAllDots(); updateLiveScore();
-  setTimeout(()=>{ if(current===i){ if(i===deck.length-1)finishQuiz();else nav(+1); } }, 1000);
-}
-
-function nav(delta) {
-  const n = current+delta;
-  if(n<0||n>=deck.length) return;
-  renderQ(n);
-}
-
-function startTimer(qIdx) {
-  timerLeft = TIMER_SEC;
-  const el = document.getElementById('timerVal');
-  el.textContent = timerLeft; el.className='timer-val';
-  timerInterval = setInterval(()=>{
-    timerLeft--;
-    el.textContent = timerLeft;
-    if(timerLeft<=5) el.className='timer-val danger';
-    else if(timerLeft<=10) el.className='timer-val warn';
-    if(timerLeft<=0){ stopTimer(); skipQuestion(); }
-  }, 1000);
-}
-
-function stopTimer(){ clearInterval(timerInterval); timerInterval=null; }
-
-function finishQuiz() {
-  stopTimer();
-  let ok=0,no=0,skipped=0;
-  answers.forEach((a,i)=>{
-    if(!a||a.skipped){skipped++;return;}
-    if(a.chosen===deck[i].correct)ok++;else no++;
-  });
-  const pct = Math.round((ok/deck.length)*100);
-  document.getElementById('gPct').textContent = pct+'%';
-  document.getElementById('rOk').textContent = ok;
-  document.getElementById('rNo').textContent = no;
-  document.getElementById('rSkip').textContent = skipped;
-
-  const levels=[
-    [100,'🏆 Perfeito!','Você acertou tudo — domínio total do conteúdo!'],
-    [80,'🎉 Excelente!','Ótimo desempenho! Você quase dominou o tema.'],
-    [60,'👍 Bom trabalho!','Resultado sólido. Revise os erros para ir mais longe.'],
-    [40,'📚 Continue!','Com mais estudo você chegará lá!'],
-    [0,'💪 Não desista!','Revise e tente novamente — você consegue!'],
-  ];
-  const [,headline,msg] = levels.find(([min])=>pct>=min);
-  document.getElementById('resHeadline').textContent = headline;
-  document.getElementById('resMsg').textContent = msg;
-
-  const gFill = document.getElementById('gFill');
-  gFill.style.stroke = pct>=80?'url(#gg)':pct>=50?'var(--yellow)':'var(--red)';
-
-  const rl = document.getElementById('reviewList');
-  rl.innerHTML = '';
-  deck.forEach((q,i)=>{
-    const a=answers[i], isOk=a&&!a.skipped&&a.chosen===q.correct;
-    const div=document.createElement('div');
-    div.className='review-item'+(isOk?' ok':'');
-    let html='';
-    if(!a||a.skipped)
-      html=`<div class="review-ans rev-gray"><span class="rev-icon">⏩</span><span class="rev-txt">Pulada — Correta: <strong>${q.options[q.correct]}</strong></span></div>`;
-    else if(a.chosen===q.correct)
-      html=`<div class="review-ans rev-ok"><span class="rev-icon">✓</span><span class="rev-txt"><strong>${q.options[a.chosen]}</strong></span></div>`;
-    else
-      html=`<div class="review-ans rev-no"><span class="rev-icon">✗</span><span class="rev-txt">Sua resposta: ${q.options[a.chosen]}</span></div>
-            <div class="review-ans rev-ok"><span class="rev-icon">✓</span><span class="rev-txt">Correta: <strong>${q.options[q.correct]}</strong></span></div>`;
-    div.innerHTML=`<div class="review-q">${i+1}. ${q.question}</div><div class="review-answers">${html}</div>`;
-    rl.appendChild(div);
-  });
-
-  showScreen('resultsScreen');
-  setTimeout(()=>{
-    const offset = 414.7-(pct/100)*414.7;
-    document.getElementById('gFill').style.strokeDashoffset=offset;
-  },100);
+function showResult(){
+  document.getElementById("quizScreen").classList.remove("active");
+  document.getElementById("resultScreen").classList.add("active");
+  document.getElementById("result").innerText = "Acertos: " + score + "/" + ALL_QUESTIONS.length;
 }
 </script>
+
 </body>
 </html>
