@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quiz — Pensamento Computacional</title>
+<title>Quiz — Desenvolvimento Web</title>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -51,7 +51,6 @@ body{
 @keyframes slideUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 @keyframes pop{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
 @keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
 /* ── START ── */
 #startScreen{padding:44px 36px 40px}
@@ -189,7 +188,7 @@ body{
 <div class="shell">
 
   <div class="topbar">
-    <div class="logo">Quiz<span>•</span>PC</div>
+    <div class="logo">Quiz<span>•</span>Dev Web</div>
     <div class="mode-toggle">
       <button class="mode-btn active" id="modeRapido" onclick="setMode('rapido')">⚡ Rápido</button>
       <button class="mode-btn" id="modeEstudo" onclick="setMode('estudo')">📖 Estudo</button>
@@ -201,9 +200,9 @@ body{
     <!-- START -->
     <div id="startScreen" class="screen active">
       <div class="start-hero">
-        <span class="start-emoji">🧠</span>
-        <h1 class="start-title">Pensamento<br>Computacional</h1>
-        <p class="start-sub">Teste seus conhecimentos com questões embaralhadas.<br>Escolha o modo e o número de perguntas.</p>
+        <span class="start-emoji">🌐</span>
+        <h1 class="start-title">Desenvolvimento<br>Web</h1>
+        <p class="start-sub">Teste seus conhecimentos sobre Sistemas, HTML5 e CSS3.<br>Escolha o modo e o número de perguntas.</p>
       </div>
       <div class="divider">Modo de jogo</div>
       <div class="config-grid">
@@ -298,53 +297,76 @@ body{
 
 <script>
 const ALL_QUESTIONS = [
-  {"question":"O que caracteriza o refinamento sucessivo?","options":["Resolver tudo de forma imediata","Aprimorar a solução em etapas progressivas","Evitar revisões","Ignorar testes"],"correct":1},
-  {"question":"Qual é o principal objetivo da validação de soluções?","options":["Aumentar a complexidade","Garantir que atende aos requisitos","Reduzir documentação","Evitar testes"],"correct":1},
-  {"question":"Um erro comum ao resolver problemas é:","options":["Analisar o contexto","Testar hipóteses","Ignorar o entendimento do problema","Dividir tarefas"],"correct":2},
-  {"question":"Visão sistêmica envolve:","options":["Analisar partes isoladas","Ignorar relações","Compreender interações do sistema","Focar apenas no código"],"correct":2},
-  {"question":"Feedback loop significa:","options":["Erro no sistema","Retorno de informação ao processo","Código duplicado","Falha de execução"],"correct":1},
-  {"question":"Causa-raiz é:","options":["Sintoma visível","Erro superficial","Origem real do problema","Teste falho"],"correct":2},
-  {"question":"O diagrama de fluxo serve para:","options":["Executar código","Visualizar etapas de um processo","Compilar programas","Testar software"],"correct":1},
-  {"question":"Decomposição ajuda a:","options":["Aumentar dificuldade","Resolver problemas menores separadamente","Ignorar etapas","Eliminar testes"],"correct":1},
-  {"question":"Reconhecimento de padrões permite:","options":["Ignorar soluções anteriores","Reaproveitar soluções similares","Aumentar erros","Evitar análise"],"correct":1},
-  {"question":"Abstração consiste em:","options":["Focar em detalhes irrelevantes","Ignorar estrutura","Destacar informações importantes","Eliminar lógica"],"correct":2},
-  {"question":"Algoritmo é:","options":["Um erro de sistema","Sequência lógica de passos","Código inválido","Interface gráfica"],"correct":1},
-  {"question":"Requisitos funcionais definem:","options":["A aparência","As funcionalidades","Os erros","A performance"],"correct":1},
-  {"question":"Pseudoalgoritmo serve para:","options":["Executar diretamente","Planejar solução","Testar hardware","Compilar código"],"correct":1},
-  {"question":"Tentativa e erro eficiente envolve:","options":["Testar sem critério","Aprender com falhas","Ignorar resultados","Evitar testes"],"correct":1},
-  {"question":"Pensamento computacional inclui:","options":["Apenas programação","Estratégias de resolução de problemas","Evitar lógica","Ignorar padrões"],"correct":1},
-  {"question":"Um fluxograma representa:","options":["Código executável","Passos de um processo","Erros do sistema","Banco de dados"],"correct":1},
-  {"question":"Ishikawa é usado para:","options":["Executar código","Analisar causas","Criar interface","Testar software"],"correct":1},
-  {"question":"Erro de raciocínio comum:","options":["Verificar hipóteses","Pular análise","Dividir tarefas","Testar soluções"],"correct":1},
-  {"question":"Sistema é:","options":["Parte isolada","Conjunto de elementos interligados","Erro lógico","Código simples"],"correct":1},
-  {"question":"Feedback positivo:","options":["Reduz efeitos","Amplifica resultados","Elimina erros","Ignora entrada"],"correct":1},
-  {"question":"Feedback negativo:","options":["Amplifica saída","Equilibra sistema","Ignora resultado","Duplica erro"],"correct":1},
-  {"question":"Mapear sistema ajuda a:","options":["Confundir solução","Visualizar relações","Eliminar dados","Ignorar fluxo"],"correct":1},
-  {"question":"Problema grande deve ser:","options":["Ignorado","Dividido em partes","Resolvido direto","Evitado"],"correct":1},
-  {"question":"Teste de solução serve para:","options":["Ignorar erros","Validar funcionamento","Eliminar código","Evitar análise"],"correct":1},
-  {"question":"Fluxo representa:","options":["Código","Sequência de etapas","Erro","Interface"],"correct":1},
-  {"question":"Pensamento lógico ajuda a:","options":["Criar erros","Resolver problemas","Ignorar dados","Evitar testes"],"correct":1},
-  {"question":"Análise de problema inclui:","options":["Ignorar contexto","Entender requisitos","Evitar solução","Pular etapas"],"correct":1},
-  {"question":"Solução eficiente é:","options":["Sem testes","Validada e funcional","Complexa","Incompleta"],"correct":1},
-  {"question":"Erro lógico ocorre quando:","options":["Código compila","Resultado é incorreto","Não executa","Interface falha"],"correct":1},
-  {"question":"Processo iterativo é:","options":["Único passo","Repetição com melhorias","Erro contínuo","Código fixo"],"correct":1},
-  {"question":"Solução parcial:","options":["Resolve tudo","Resolve parte do problema","Ignora problema","Elimina análise"],"correct":1},
-  {"question":"Análise sistêmica considera:","options":["Parte isolada","Todo o sistema","Erro específico","Código único"],"correct":1},
-  {"question":"Estratégia eficaz envolve:","options":["Ignorar testes","Planejamento","Evitar análise","Eliminar dados"],"correct":1},
-  {"question":"Teste contínuo ajuda a:","options":["Criar erros","Melhorar qualidade","Ignorar falhas","Evitar solução"],"correct":1},
-  {"question":"Problemas complexos exigem:","options":["Soluções rápidas","Análise detalhada","Ignorar etapas","Evitar divisão"],"correct":1},
-  {"question":"Fluxograma ajuda a:","options":["Executar código","Entender lógica","Ignorar fluxo","Eliminar etapas"],"correct":1},
-  {"question":"Revisão de solução serve para:","options":["Ignorar erros","Aprimorar solução","Eliminar testes","Evitar análise"],"correct":1},
-  {"question":"Erro de análise ocorre quando:","options":["Entende problema","Interpreta errado","Testa solução","Divide tarefas"],"correct":1},
-  {"question":"Modelo mental ajuda a:","options":["Confundir lógica","Organizar pensamento","Ignorar dados","Eliminar solução"],"correct":1},
-  {"question":"Planejamento é importante para:","options":["Evitar erros","Estruturar solução","Ignorar etapas","Eliminar testes"],"correct":1},
-  {"question":"Estrutura lógica é:","options":["Desorganizada","Sequencial","Aleatória","Inexistente"],"correct":1},
-  {"question":"Erro comum é:","options":["Planejar","Testar","Pular etapas","Analisar"],"correct":2},
-  {"question":"Boa solução deve ser:","options":["Complexa","Testada","Incompleta","Confusa"],"correct":1},
-  {"question":"Iteração significa:","options":["Repetição","Erro","Fim","Código"],"correct":0},
-  {"question":"Abordagem correta inclui:","options":["Ignorar problema","Entender contexto","Evitar testes","Eliminar lógica"],"correct":1},
-  {"question":"Dividir problema ajuda a:","options":["Complicar","Simplificar solução","Ignorar etapas","Eliminar análise"],"correct":1},
-  {"question":"Teste final serve para:","options":["Ignorar erros","Confirmar solução","Eliminar código","Evitar validação"],"correct":1}
+  // ── SISTEMAS ──
+  {"question":"O que é um sistema?","options":["Um programa de computador isolado","Um conjunto de elementos que trabalham juntos para atingir um objetivo","Um arquivo HTML","Um servidor web"],"correct":1},
+  {"question":"Quais são as três partes principais de um sistema?","options":["HTML, CSS e JavaScript","Cliente, Servidor e Banco de Dados","Entrada, Processamento e Saída","Monitor, Teclado e Mouse"],"correct":2},
+  {"question":"Em um sistema de login, o que representa a ENTRADA?","options":["A mensagem 'acesso permitido'","O banco de dados","O usuário digitando login e senha","O servidor verificando os dados"],"correct":2},
+  {"question":"Em um sistema de login, o que representa o PROCESSAMENTO?","options":["O usuário digitando a senha","O servidor verificando os dados no banco","A mensagem exibida na tela","O formulário HTML"],"correct":1},
+  {"question":"Em um sistema de login, o que representa a SAÍDA?","options":["A senha digitada","A verificação no banco","Acesso permitido ou negado na tela","O servidor web"],"correct":2},
+  {"question":"O que é o CLIENTE em um sistema web?","options":["O servidor que processa dados","O banco de dados","O dispositivo do usuário com um navegador","O protocolo HTTP"],"correct":2},
+  {"question":"Qual NÃO é um exemplo de navegador (browser)?","options":["Chrome","Firefox","Apache","Safari"],"correct":2},
+  {"question":"O que é o SERVIDOR em um sistema web?","options":["O celular do usuário","Computador que armazena o sistema e responde às solicitações","O navegador web","O arquivo HTML"],"correct":1},
+  {"question":"Qual é um exemplo de servidor web?","options":["Chrome","Windows","Nginx","Firefox"],"correct":2},
+  {"question":"Para que serve o protocolo HTTP?","options":["Criar páginas HTML","Estilizar elementos com CSS","Comunicação entre cliente e servidor","Armazenar dados no banco"],"correct":2},
+  {"question":"Qual a diferença entre HTTP e HTTPS?","options":["Não há diferença","HTTPS é mais lento","HTTPS é a versão segura (criptografada) do HTTP","HTTP é mais moderno"],"correct":2},
+  {"question":"Qual é a ordem correta do fluxo HTTP?","options":["Servidor processa → usuário digita → navegador envia → servidor retorna","Usuário digita endereço → navegador envia requisição → servidor processa → servidor retorna página","Servidor retorna → navegador envia → usuário digita → servidor processa","Banco consulta → servidor processa → usuário recebe → página abre"],"correct":1},
+
+  // ── INTERFACE E IHC ──
+  {"question":"O que é uma interface?","options":["O código do sistema","O banco de dados","O meio de comunicação entre usuário e sistema","O servidor web"],"correct":2},
+  {"question":"O que é uma GUI?","options":["Linguagem de programação","Interface gráfica com elementos visuais como botões e menus","Protocolo de comunicação","Banco de dados relacional"],"correct":1},
+  {"question":"Qual é um exemplo de interface TEXTUAL?","options":["Um formulário web","Um menu de navegação","O terminal Linux com comandos","Uma galeria de imagens"],"correct":2},
+  {"question":"O que estuda a Interação Humano-Computador (IHC)?","options":["Como criar bancos de dados","Como as pessoas utilizam sistemas digitais","Como programar em Python","Como configurar servidores"],"correct":1},
+  {"question":"Qual NÃO é um objetivo da IHC?","options":["Melhorar usabilidade","Facilitar aprendizado","Aumentar a complexidade do sistema","Reduzir erros"],"correct":2},
+  {"question":"Um sistema com boa usabilidade deve ser:","options":["Complexo e cheio de opções","Fácil de aprender, eficiente e agradável de usar","Visualmente pesado","Exclusivo para especialistas"],"correct":1},
+  {"question":"Qual é um exemplo de MÁ interface de login?","options":["Email: / Senha: / [Entrar]","ID usuário: / Chave de autenticação: / Token:","Nome: / Senha: / [Acessar]","Usuário: / Senha: / [Entrar]"],"correct":1},
+
+  // ── HTML5 ──
+  {"question":"O que significa HTML?","options":["High Text Markup Language","Hyper Text Markup Language","Hyper Transfer Markup Language","High Transfer Markup Language"],"correct":1},
+  {"question":"HTML é uma linguagem de:","options":["Programação","Banco de dados","Marcação para estruturar páginas web","Estilização visual"],"correct":2},
+  {"question":"Qual tag define o início do documento HTML5?","options":["<html>","<!DOCTYPE html>","<head>","<body>"],"correct":1},
+  {"question":"Onde ficam as informações sobre a página como o título e metadados?","options":["<body>","<footer>","<head>","<main>"],"correct":2},
+  {"question":"Onde fica o conteúdo visível da página?","options":["<head>","<title>","<meta>","<body>"],"correct":3},
+  {"question":"Quantos níveis de título o HTML possui?","options":["3","4","5","6"],"correct":3},
+  {"question":"Qual tag representa o título de maior importância?","options":["<h6>","<h3>","<h1>","<title>"],"correct":2},
+  {"question":"Qual tag é usada para criar parágrafos?","options":["<text>","<para>","<p>","<pg>"],"correct":2},
+  {"question":"Qual tag cria uma lista NÃO ordenada?","options":["<ol>","<ul>","<li>","<list>"],"correct":1},
+  {"question":"Qual tag cria uma lista ORDENADA (numerada)?","options":["<ul>","<nl>","<ol>","<li>"],"correct":2},
+  {"question":"Qual tag representa cada item de uma lista?","options":["<item>","<list>","<it>","<li>"],"correct":3},
+  {"question":"Qual tag é usada para criar links?","options":["<link>","<href>","<a>","<url>"],"correct":2},
+  {"question":"Qual atributo define o destino de um link?","options":["src","alt","href","target"],"correct":2},
+  {"question":"Para que serve o atributo target=\"_blank\" em um link?","options":["Abre o link na mesma aba","Fecha a aba atual","Abre o link em uma nova aba","Define o tamanho do link"],"correct":2},
+  {"question":"Qual tag é usada para inserir imagens?","options":["<image>","<picture>","<photo>","<img>"],"correct":3},
+  {"question":"Qual atributo define o caminho da imagem?","options":["href","alt","src","url"],"correct":2},
+  {"question":"Para que serve o atributo alt em uma imagem?","options":["Define o tamanho","Define a cor de fundo","Fornece descrição alternativa da imagem","Define o link da imagem"],"correct":2},
+  {"question":"Qual tag principal é usada para criar formulários?","options":["<input>","<form>","<field>","<data>"],"correct":1},
+  {"question":"Qual tipo de input é usado para campo de e-mail?","options":["type=\"text\"","type=\"mail\"","type=\"email\"","type=\"address\""],"correct":2},
+  {"question":"Qual tag cria um botão em um formulário?","options":["<btn>","<input type=\"submit\">","<button>","B e C estão corretas"],"correct":3},
+  {"question":"O que faz a tag <label> em um formulário?","options":["Envia o formulário","Cria um campo de texto","Associa um texto descritivo a um campo","Define o estilo do campo"],"correct":2},
+  {"question":"Qual tag define o título mostrado na aba do navegador?","options":["<h1>","<header>","<title>","<meta>"],"correct":2},
+
+  // ── CSS3 ──
+  {"question":"O que significa CSS?","options":["Computer Style Sheets","Cascading Style Sheets","Creative Style System","Color Style Sheets"],"correct":1},
+  {"question":"Para que serve o CSS?","options":["Estruturar páginas web","Definir o visual da página: cores, fontes, tamanhos e layout","Criar banco de dados","Programar interações"],"correct":1},
+  {"question":"Qual das opções é uma forma de usar CSS INLINE?","options":["Arquivo separado style.css","Dentro da tag <style> no HTML","style=\"color:red\" dentro da própria tag","@import no topo do arquivo"],"correct":2},
+  {"question":"Qual das opções é CSS INTERNO?","options":["Arquivo .css externo","style=\"\" na tag HTML","Dentro da tag <style> no <head>","Importado via JavaScript"],"correct":2},
+  {"question":"Qual seletor CSS aplica estilo a TODOS os parágrafos?","options":[".paragrafo { }","#paragrafo { }","p { }","*p { }"],"correct":2},
+  {"question":"Qual seletor CSS aplica estilo a uma CLASSE?","options":["p { }","#titulo { }",".destaque { }","@destaque { }"],"correct":2},
+  {"question":"Qual seletor CSS aplica estilo a um ID específico?","options":[".titulo { }","#titulo { }","titulo { }","id.titulo { }"],"correct":1},
+  {"question":"Qual é a ordem correta do Box Model do CSS (de dentro para fora)?","options":["margin → border → padding → content","content → padding → border → margin","padding → content → border → margin","border → content → padding → margin"],"correct":1},
+  {"question":"O que é o 'padding' no Box Model?","options":["Margem externa do elemento","Borda do elemento","Espaçamento interno entre conteúdo e borda","Largura total do elemento"],"correct":2},
+  {"question":"O que é o 'margin' no Box Model?","options":["Espaçamento interno","Borda do elemento","Espaçamento externo entre elementos","Cor de fundo"],"correct":2},
+  {"question":"Qual propriedade CSS ativa o Flexbox?","options":["flex: active","display: flex","layout: flex","position: flex"],"correct":1},
+  {"question":"O que faz justify-content: center no Flexbox?","options":["Centraliza verticalmente","Centraliza horizontalmente os itens","Define o tamanho dos itens","Quebra os itens em linhas"],"correct":1},
+  {"question":"Para que serve a propriedade gap no Flexbox?","options":["Define a cor entre os itens","Define o espaçamento entre os itens","Define a borda dos itens","Define o alinhamento vertical"],"correct":1},
+  {"question":"O que é responsividade em sites?","options":["Sites apenas para desktop","Sites que carregam rápido","Sites que funcionam bem em celular, tablet e desktop","Sites com animações"],"correct":2},
+  {"question":"Como se chama a técnica CSS para adaptar o layout a diferentes tamanhos de tela?","options":["flex-media","responsive-query","media query","screen-adapt"],"correct":2},
+  {"question":"O que faz @media (max-width: 600px) ?","options":["Aplica estilos apenas em telas maiores que 600px","Aplica estilos apenas em telas menores ou iguais a 600px","Define a largura máxima do site","Bloqueia acesso em mobile"],"correct":1},
+  {"question":"Qual propriedade CSS define a cor do texto?","options":["font-color","text-color","color","background-color"],"correct":2},
+  {"question":"Qual propriedade CSS define a cor de fundo?","options":["color","bg","background","background-color"],"correct":3},
+  {"question":"Qual propriedade CSS define o tamanho da fonte?","options":["text-size","font-size","size","font-weight"],"correct":1},
+  {"question":"Qual propriedade CSS define a espessura da fonte?","options":["font-size","font-style","font-weight","text-weight"],"correct":2},
+  {"question":"No exercício final da Aula 4, o site deve conter quantas páginas?","options":["1 — apenas Home","2 — Home e Contato","3 — Home, Sobre e Contato","4 — Home, Sobre, Contato e Blog"],"correct":2},
+  {"question":"O exercício final da aula pede uso de CSS:","options":["Inline em todas as tags","Interno no <head>","Externo em arquivo separado","Não é necessário CSS"],"correct":2}
 ];
 
 const LETTERS = ['A','B','C','D'];
@@ -455,7 +477,6 @@ function renderQ(i) {
     </div>`;
   }).join('');
 
-  // feedback
   const t = document.getElementById('feedbackToast');
   t.className = 'feedback-toast';
   if(isAnswered){
