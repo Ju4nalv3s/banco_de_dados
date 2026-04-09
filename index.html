@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quiz — Desenvolvimento Web</title>
+<title>Quiz — Banco de Dados & Big Data</title>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -188,7 +188,7 @@ body{
 <div class="shell">
 
   <div class="topbar">
-    <div class="logo">Quiz<span>•</span>Dev Web</div>
+    <div class="logo">Quiz<span>•</span>Banco de Dados</div>
     <div class="mode-toggle">
       <button class="mode-btn active" id="modeRapido" onclick="setMode('rapido')">⚡ Rápido</button>
       <button class="mode-btn" id="modeEstudo" onclick="setMode('estudo')">📖 Estudo</button>
@@ -200,9 +200,9 @@ body{
     <!-- START -->
     <div id="startScreen" class="screen active">
       <div class="start-hero">
-        <span class="start-emoji">🌐</span>
-        <h1 class="start-title">Desenvolvimento<br>Web</h1>
-        <p class="start-sub">Teste seus conhecimentos sobre Sistemas, HTML5 e CSS3.<br>Escolha o modo e o número de perguntas.</p>
+        <span class="start-emoji">🗄️</span>
+        <h1 class="start-title">NoSQL &amp;<br>Big Data</h1>
+        <p class="start-sub">Teste seus conhecimentos sobre Bancos de Dados Não Relacionais, Big Data e Tipos de Dados.<br>Escolha o modo e o número de perguntas.</p>
       </div>
       <div class="divider">Modo de jogo</div>
       <div class="config-grid">
@@ -297,76 +297,237 @@ body{
 
 <script>
 const ALL_QUESTIONS = [
-  // ── SISTEMAS ──
-  {"question":"O que é um sistema?","options":["Um programa de computador isolado","Um conjunto de elementos que trabalham juntos para atingir um objetivo","Um arquivo HTML","Um servidor web"],"correct":1},
-  {"question":"Quais são as três partes principais de um sistema?","options":["HTML, CSS e JavaScript","Cliente, Servidor e Banco de Dados","Entrada, Processamento e Saída","Monitor, Teclado e Mouse"],"correct":2},
-  {"question":"Em um sistema de login, o que representa a ENTRADA?","options":["A mensagem 'acesso permitido'","O banco de dados","O usuário digitando login e senha","O servidor verificando os dados"],"correct":2},
-  {"question":"Em um sistema de login, o que representa o PROCESSAMENTO?","options":["O usuário digitando a senha","O servidor verificando os dados no banco","A mensagem exibida na tela","O formulário HTML"],"correct":1},
-  {"question":"Em um sistema de login, o que representa a SAÍDA?","options":["A senha digitada","A verificação no banco","Acesso permitido ou negado na tela","O servidor web"],"correct":2},
-  {"question":"O que é o CLIENTE em um sistema web?","options":["O servidor que processa dados","O banco de dados","O dispositivo do usuário com um navegador","O protocolo HTTP"],"correct":2},
-  {"question":"Qual NÃO é um exemplo de navegador (browser)?","options":["Chrome","Firefox","Apache","Safari"],"correct":2},
-  {"question":"O que é o SERVIDOR em um sistema web?","options":["O celular do usuário","Computador que armazena o sistema e responde às solicitações","O navegador web","O arquivo HTML"],"correct":1},
-  {"question":"Qual é um exemplo de servidor web?","options":["Chrome","Windows","Nginx","Firefox"],"correct":2},
-  {"question":"Para que serve o protocolo HTTP?","options":["Criar páginas HTML","Estilizar elementos com CSS","Comunicação entre cliente e servidor","Armazenar dados no banco"],"correct":2},
-  {"question":"Qual a diferença entre HTTP e HTTPS?","options":["Não há diferença","HTTPS é mais lento","HTTPS é a versão segura (criptografada) do HTTP","HTTP é mais moderno"],"correct":2},
-  {"question":"Qual é a ordem correta do fluxo HTTP?","options":["Servidor processa → usuário digita → navegador envia → servidor retorna","Usuário digita endereço → navegador envia requisição → servidor processa → servidor retorna página","Servidor retorna → navegador envia → usuário digita → servidor processa","Banco consulta → servidor processa → usuário recebe → página abre"],"correct":1},
 
-  // ── INTERFACE E IHC ──
-  {"question":"O que é uma interface?","options":["O código do sistema","O banco de dados","O meio de comunicação entre usuário e sistema","O servidor web"],"correct":2},
-  {"question":"O que é uma GUI?","options":["Linguagem de programação","Interface gráfica com elementos visuais como botões e menus","Protocolo de comunicação","Banco de dados relacional"],"correct":1},
-  {"question":"Qual é um exemplo de interface TEXTUAL?","options":["Um formulário web","Um menu de navegação","O terminal Linux com comandos","Uma galeria de imagens"],"correct":2},
-  {"question":"O que estuda a Interação Humano-Computador (IHC)?","options":["Como criar bancos de dados","Como as pessoas utilizam sistemas digitais","Como programar em Python","Como configurar servidores"],"correct":1},
-  {"question":"Qual NÃO é um objetivo da IHC?","options":["Melhorar usabilidade","Facilitar aprendizado","Aumentar a complexidade do sistema","Reduzir erros"],"correct":2},
-  {"question":"Um sistema com boa usabilidade deve ser:","options":["Complexo e cheio de opções","Fácil de aprender, eficiente e agradável de usar","Visualmente pesado","Exclusivo para especialistas"],"correct":1},
-  {"question":"Qual é um exemplo de MÁ interface de login?","options":["Email: / Senha: / [Entrar]","ID usuário: / Chave de autenticação: / Token:","Nome: / Senha: / [Acessar]","Usuário: / Senha: / [Entrar]"],"correct":1},
+  // ── NoSQL ──
+  {
+    "question": "O que significa a sigla NoSQL?",
+    "options": ["No Structured Query Language", "Not Only SQL", "New Object Structured Query Language", "Non Optional SQL"],
+    "correct": 1
+  },
+  {
+    "question": "Por que os bancos de dados NoSQL surgiram?",
+    "options": [
+      "Para substituir completamente o SQL em todos os contextos",
+      "Para suprir lacunas de escalabilidade e flexibilidade diante de volumes massivos de dados não estruturados",
+      "Por serem mais baratos que os bancos relacionais",
+      "Para armazenar exclusivamente dados estruturados"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "O que é 'Schema-less' nos bancos NoSQL?",
+    "options": [
+      "Um esquema de segurança avançado",
+      "A obrigatoriedade de usar tabelas rígidas",
+      "A ausência de estrutura de tabelas rígida e pré-definida, permitindo formatos variados",
+      "Um protocolo de comunicação entre servidores"
+    ],
+    "correct": 2
+  },
+  {
+    "question": "O que é escalabilidade horizontal (Sharding) no contexto NoSQL?",
+    "options": [
+      "Aumentar a potência de um único servidor",
+      "Reduzir o número de servidores para economizar",
+      "Crescer através da adição de mais servidores (nós) em um cluster",
+      "Dividir o banco em tabelas menores"
+    ],
+    "correct": 2
+  },
+  {
+    "question": "Qual modelo NoSQL armazena dados como documentos JSON/BSON?",
+    "options": ["Chave-Valor", "Família de Colunas", "Grafos", "Documentos"],
+    "correct": 3
+  },
+  {
+    "question": "O Redis é um exemplo de qual modelo de banco de dados NoSQL?",
+    "options": ["Documentos", "Grafos", "Chave-Valor", "Família de Colunas"],
+    "correct": 2
+  },
+  {
+    "question": "O banco de dados Cassandra é classificado como qual modelo NoSQL?",
+    "options": ["Documentos", "Chave-Valor", "Grafos", "Família de Colunas"],
+    "correct": 3
+  },
+  {
+    "question": "O Neo4j é um banco de dados NoSQL focado em:",
+    "options": [
+      "Alta performance com pares simples de chave-valor",
+      "Relacionamentos complexos entre entidades usando grafos",
+      "Armazenamento de documentos JSON",
+      "Consultas em grandes conjuntos de dados tabulares"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Qual banco de dados é um exemplo do modelo de Documentos?",
+    "options": ["Redis", "Cassandra", "Neo4j", "MongoDB"],
+    "correct": 3
+  },
+  {
+    "question": "Qual é a principal vantagem do modelo Chave-Valor no NoSQL?",
+    "options": [
+      "Suporte a consultas SQL complexas",
+      "Alta performance e simplicidade",
+      "Relacionamentos complexos entre dados",
+      "Análise de grandes volumes de dados tabulares"
+    ],
+    "correct": 1
+  },
 
-  // ── HTML5 ──
-  {"question":"O que significa HTML?","options":["High Text Markup Language","Hyper Text Markup Language","Hyper Transfer Markup Language","High Transfer Markup Language"],"correct":1},
-  {"question":"HTML é uma linguagem de:","options":["Programação","Banco de dados","Marcação para estruturar páginas web","Estilização visual"],"correct":2},
-  {"question":"Qual tag define o início do documento HTML5?","options":["&lt;html&gt;","&lt;!DOCTYPE html&gt;","&lt;head&gt;","&lt;body&gt;"],"correct":1},
-  {"question":"Onde ficam as informações sobre a página como o título e metadados?","options":["&lt;body&gt;","&lt;footer&gt;","&lt;head&gt;","&lt;main&gt;"],"correct":2},
-  {"question":"Onde fica o conteúdo visível da página?","options":["&lt;head&gt;","&lt;title&gt;","&lt;meta&gt;","&lt;body&gt;"],"correct":3},
-  {"question":"Quantos níveis de título o HTML possui?","options":["3","4","5","6"],"correct":3},
-  {"question":"Qual tag representa o título de maior importância?","options":["&lt;h6&gt;","&lt;h3&gt;","&lt;h1&gt;","&lt;title&gt;"],"correct":2},
-  {"question":"Qual tag é usada para criar parágrafos?","options":["&lt;text&gt;","&lt;para&gt;","&lt;p&gt;","&lt;pg&gt;"],"correct":2},
-  {"question":"Qual tag cria uma lista NÃO ordenada?","options":["&lt;ol&gt;","&lt;ul&gt;","&lt;li&gt;","&lt;list&gt;"],"correct":1},
-  {"question":"Qual tag cria uma lista ORDENADA (numerada)?","options":["&lt;ul&gt;","&lt;nl&gt;","&lt;ol&gt;","&lt;li&gt;"],"correct":2},
-  {"question":"Qual tag representa cada item de uma lista?","options":["&lt;item&gt;","&lt;list&gt;","&lt;it&gt;","&lt;li&gt;"],"correct":3},
-  {"question":"Qual tag é usada para criar links?","options":["&lt;link&gt;","&lt;href&gt;","&lt;a&gt;","&lt;url&gt;"],"correct":2},
-  {"question":"Qual atributo define o destino de um link?","options":["src","alt","href","target"],"correct":2},
-  {"question":"Para que serve o atributo target='_blank' em um link?","options":["Abre o link na mesma aba","Fecha a aba atual","Abre o link em uma nova aba","Define o tamanho do link"],"correct":2},
-  {"question":"Qual tag é usada para inserir imagens?","options":["&lt;image&gt;","&lt;picture&gt;","&lt;photo&gt;","&lt;img&gt;"],"correct":3},
-  {"question":"Qual atributo define o caminho da imagem?","options":["href","alt","src","url"],"correct":2},
-  {"question":"Para que serve o atributo alt em uma imagem?","options":["Define o tamanho","Define a cor de fundo","Fornece descrição alternativa da imagem","Define o link da imagem"],"correct":2},
-  {"question":"Qual tag principal é usada para criar formulários?","options":["&lt;input&gt;","&lt;form&gt;","&lt;field&gt;","&lt;data&gt;"],"correct":1},
-  {"question":"Qual tipo de input é usado para campo de e-mail?","options":["type='text'","type='mail'","type='email'","type='address'"],"correct":2},
-  {"question":"Qual tag cria um botão em um formulário?","options":["&lt;btn&gt;","&lt;input type='submit'&gt;","&lt;button&gt;","As opções B e C estão corretas"],"correct":3},
-  {"question":"O que faz a tag &lt;label&gt; em um formulário?","options":["Envia o formulário","Cria um campo de texto","Associa um texto descritivo a um campo","Define o estilo do campo"],"correct":2},
-  {"question":"Qual tag define o título mostrado na aba do navegador?","options":["&lt;h1&gt;","&lt;header&gt;","&lt;title&gt;","&lt;meta&gt;"],"correct":2},
+  // ── BIG DATA ──
+  {
+    "question": "O que é Big Data?",
+    "options": [
+      "Qualquer banco de dados com mais de 1 GB",
+      "Um software específico para análise de dados",
+      "Conjuntos de dados tão volumosos e complexos que ferramentas tradicionais não conseguem gerenciá-los",
+      "Um tipo de banco de dados relacional"
+    ],
+    "correct": 2
+  },
+  {
+    "question": "Quantos são os 'Vs' do Big Data?",
+    "options": ["3", "4", "5", "6"],
+    "correct": 2
+  },
+  {
+    "question": "Qual 'V' do Big Data se refere à quantidade massiva de dados gerados a cada segundo?",
+    "options": ["Velocidade", "Variedade", "Veracidade", "Volume"],
+    "correct": 3
+  },
+  {
+    "question": "Qual 'V' do Big Data representa a rapidez com que os dados são criados e processados em tempo real?",
+    "options": ["Volume", "Velocidade", "Variedade", "Valor"],
+    "correct": 1
+  },
+  {
+    "question": "Qual 'V' do Big Data trata dos diferentes formatos como textos, áudios, vídeos e dados de sensores?",
+    "options": ["Volume", "Velocidade", "Variedade", "Veracidade"],
+    "correct": 2
+  },
+  {
+    "question": "Qual 'V' do Big Data representa a qualidade e confiabilidade dos dados coletados?",
+    "options": ["Volume", "Valor", "Variedade", "Veracidade"],
+    "correct": 3
+  },
+  {
+    "question": "Qual 'V' do Big Data se refere à capacidade de transformar dados brutos em insights para o negócio?",
+    "options": ["Volume", "Velocidade", "Veracidade", "Valor"],
+    "correct": 3
+  },
+  {
+    "question": "O que é um Data Lake?",
+    "options": [
+      "Repositório de dados estruturados e filtrados para análises específicas",
+      "Repositório de dados brutos em seu formato original",
+      "Um banco de dados relacional de alta performance",
+      "Uma ferramenta de visualização de dados"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Qual é a diferença entre Data Lake e Data Warehouse?",
+    "options": [
+      "Data Lake é mais caro e lento que o Data Warehouse",
+      "Data Lake armazena dados brutos; Data Warehouse armazena dados estruturados e filtrados para análise",
+      "Data Warehouse armazena dados brutos; Data Lake armazena dados filtrados",
+      "Não há diferença prática entre os dois"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Como podemos chamar o cenário social atual de grande produção de dados descrito no conteúdo?",
+    "options": ["Infosfera", "Tecnosfera", "Dadosfera", "Datasfera"],
+    "correct": 2
+  },
 
-  // ── CSS3 ──
-  {"question":"O que significa CSS?","options":["Computer Style Sheets","Cascading Style Sheets","Creative Style System","Color Style Sheets"],"correct":1},
-  {"question":"Para que serve o CSS?","options":["Estruturar páginas web","Definir o visual da página: cores, fontes, tamanhos e layout","Criar banco de dados","Programar interações"],"correct":1},
-  {"question":"Qual das opções é uma forma de usar CSS INLINE?","options":["Arquivo separado style.css","Dentro da tag &lt;style&gt; no HTML","style='color:red' dentro da própria tag","@import no topo do arquivo"],"correct":2},
-  {"question":"Qual das opções é CSS INTERNO?","options":["Arquivo .css externo","style='' na tag HTML","Dentro da tag &lt;style&gt; no &lt;head&gt;","Importado via JavaScript"],"correct":2},
-  {"question":"Qual seletor CSS aplica estilo a TODOS os parágrafos?","options":[".paragrafo { }","#paragrafo { }","p { }","*p { }"],"correct":2},
-  {"question":"Qual seletor CSS aplica estilo a uma CLASSE?","options":["p { }","#titulo { }",".destaque { }","@destaque { }"],"correct":2},
-  {"question":"Qual seletor CSS aplica estilo a um ID específico?","options":[".titulo { }","#titulo { }","titulo { }","id.titulo { }"],"correct":1},
-  {"question":"Qual é a ordem correta do Box Model do CSS (de dentro para fora)?","options":["margin → border → padding → content","content → padding → border → margin","padding → content → border → margin","border → content → padding → margin"],"correct":1},
-  {"question":"O que é o 'padding' no Box Model?","options":["Margem externa do elemento","Borda do elemento","Espaçamento interno entre conteúdo e borda","Largura total do elemento"],"correct":2},
-  {"question":"O que é o 'margin' no Box Model?","options":["Espaçamento interno","Borda do elemento","Espaçamento externo entre elementos","Cor de fundo"],"correct":2},
-  {"question":"Qual propriedade CSS ativa o Flexbox?","options":["flex: active","display: flex","layout: flex","position: flex"],"correct":1},
-  {"question":"O que faz justify-content: center no Flexbox?","options":["Centraliza verticalmente","Centraliza horizontalmente os itens","Define o tamanho dos itens","Quebra os itens em linhas"],"correct":1},
-  {"question":"Para que serve a propriedade gap no Flexbox?","options":["Define a cor entre os itens","Define o espaçamento entre os itens","Define a borda dos itens","Define o alinhamento vertical"],"correct":1},
-  {"question":"O que é responsividade em sites?","options":["Sites apenas para desktop","Sites que carregam rápido","Sites que funcionam bem em celular, tablet e desktop","Sites com animações"],"correct":2},
-  {"question":"Como se chama a técnica CSS para adaptar o layout a diferentes tamanhos de tela?","options":["flex-media","responsive-query","media query","screen-adapt"],"correct":2},
-  {"question":"O que faz @media (max-width: 600px)?","options":["Aplica estilos apenas em telas maiores que 600px","Aplica estilos apenas em telas menores ou iguais a 600px","Define a largura máxima do site","Bloqueia acesso em mobile"],"correct":1},
-  {"question":"Qual propriedade CSS define a cor do texto?","options":["font-color","text-color","color","background-color"],"correct":2},
-  {"question":"Qual propriedade CSS define a cor de fundo?","options":["color","bg","background","background-color"],"correct":3},
-  {"question":"Qual propriedade CSS define o tamanho da fonte?","options":["text-size","font-size","size","font-weight"],"correct":1},
-  {"question":"Qual propriedade CSS define a espessura da fonte?","options":["font-size","font-style","font-weight","text-weight"],"correct":2},
-  {"question":"No exercício final da Aula 4, o site deve conter quantas páginas?","options":["1 — apenas Home","2 — Home e Contato","3 — Home, Sobre e Contato","4 — Home, Sobre, Contato e Blog"],"correct":2},
-  {"question":"O exercício final da aula pede uso de CSS:","options":["Inline em todas as tags","Interno no &lt;head&gt;","Externo em arquivo separado","Não é necessário CSS"],"correct":2}
+  // ── TIPOS DE DADOS ──
+  {
+    "question": "Qual característica define os Dados Estruturados?",
+    "options": [
+      "Não possuem formato definido e são difíceis de analisar",
+      "São flexíveis e podem ter tags para hierarquizar informações",
+      "Seguem um modelo rígido e pré-definido, organizados em tabelas de linhas e colunas",
+      "São armazenados apenas em Data Lakes"
+    ],
+    "correct": 2
+  },
+  {
+    "question": "Onde normalmente vivem os Dados Estruturados?",
+    "options": ["Data Lakes", "Bancos de Dados NoSQL", "Bancos de Dados Relacionais (SQL)", "Arquivos JSON"],
+    "correct": 2
+  },
+  {
+    "question": "Quais são exemplos de Dados Estruturados?",
+    "options": [
+      "E-mails, vídeos e posts em redes sociais",
+      "Arquivos JSON e XML",
+      "Cadastro de cliente, transações bancárias e registros de inventário",
+      "Áudios, imagens e PDFs"
+    ],
+    "correct": 2
+  },
+  {
+    "question": "O que são Dados Semiestruturados?",
+    "options": [
+      "Dados idênticos aos estruturados, mas armazenados em nuvem",
+      "Dados que não possuem nenhuma organização interna",
+      "Dados que possuem marcadores, tags ou chaves para separar elementos, sem estar presos a tabelas rígidas",
+      "Dados exclusivamente em formato de vídeo e áudio"
+    ],
+    "correct": 2
+  },
+  {
+    "question": "Quais são exemplos clássicos de Dados Semiestruturados?",
+    "options": [
+      "Tabelas SQL e planilhas Excel",
+      "Arquivos JSON e XML",
+      "Vídeos e imagens",
+      "Transações bancárias e registros de inventário"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Onde os Dados Semiestruturados normalmente vivem?",
+    "options": [
+      "Exclusivamente em bancos de dados relacionais",
+      "Em Data Warehouses estruturados",
+      "Em Bancos de Dados NoSQL, como o MongoDB",
+      "Apenas em Data Lakes"
+    ],
+    "correct": 2
+  },
+  {
+    "question": "Qual porcentagem dos dados gerados no mundo hoje são Dados Não Estruturados?",
+    "options": ["Cerca de 20%", "Cerca de 40%", "Cerca de 60%", "Cerca de 80%"],
+    "correct": 3
+  },
+  {
+    "question": "Onde os Dados Não Estruturados normalmente são armazenados?",
+    "options": ["Bancos de Dados Relacionais (SQL)", "Data Warehouses", "Data Lakes", "Planilhas Excel"],
+    "correct": 2
+  },
+  {
+    "question": "Quais técnicas são necessárias para analisar Dados Não Estruturados de forma automatizada?",
+    "options": [
+      "Apenas consultas SQL simples",
+      "Mineração de Dados e Processamento de Linguagem Natural (PLN)",
+      "Apenas ferramentas de planilha como Excel",
+      "Algoritmos simples de busca em tabelas"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Quais são exemplos de Dados Não Estruturados?",
+    "options": [
+      "Cadastro de clientes e transações bancárias",
+      "Arquivos JSON e XML",
+      "E-mails, vídeos, áudios, PDFs, imagens e posts em redes sociais",
+      "Dados em tabelas SQL com campos pré-definidos"
+    ],
+    "correct": 2
+  }
 ];
 
 const LETTERS = ['A','B','C','D'];
