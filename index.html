@@ -442,6 +442,65 @@ const ALL_QUESTIONS = [
     "correct": 2
   },
 
+  // ── NoSQL EXTRA ──
+  {
+    "question": "Qual é a principal diferença entre escalabilidade vertical e horizontal?",
+    "options": [
+      "Escalabilidade vertical adiciona mais servidores; horizontal aumenta a potência de um único servidor",
+      "Escalabilidade horizontal adiciona mais servidores; vertical aumenta a potência de um único servidor",
+      "Ambas significam a mesma coisa em contextos NoSQL",
+      "Escalabilidade horizontal é exclusiva de bancos relacionais"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Por que os bancos NoSQL são considerados mais adequados para Big Data do que os bancos relacionais tradicionais?",
+    "options": [
+      "Porque utilizam a linguagem SQL de forma mais eficiente",
+      "Porque possuem esquema flexível e escalabilidade horizontal para lidar com grandes volumes de dados variados",
+      "Porque são mais antigos e consolidados no mercado",
+      "Porque só aceitam dados estruturados em tabelas"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "No modelo de banco de dados de Grafos, qual é o foco principal?",
+    "options": [
+      "Alta performance com pares simples de dados",
+      "Armazenamento de documentos JSON flexíveis",
+      "Relacionamentos complexos entre entidades",
+      "Consultas em grandes conjuntos de dados tabulares"
+    ],
+    "correct": 2
+  },
+
+  // ── BIG DATA EXTRA ──
+  {
+    "question": "Qual 'V' do Big Data está diretamente relacionado à tomada de decisões de negócio?",
+    "options": ["Volume", "Velocidade", "Variedade", "Valor"],
+    "correct": 3
+  },
+  {
+    "question": "Um banco que processa dados de sensores IoT em tempo real está relacionado principalmente a qual 'V' do Big Data?",
+    "options": ["Volume", "Velocidade", "Veracidade", "Valor"],
+    "correct": 1
+  },
+  {
+    "question": "Dados coletados de redes sociais que podem conter informações falsas ou imprecisas representam um desafio para qual 'V' do Big Data?",
+    "options": ["Volume", "Velocidade", "Veracidade", "Variedade"],
+    "correct": 2
+  },
+  {
+    "question": "Um Data Warehouse é mais indicado para:",
+    "options": [
+      "Armazenar dados brutos sem processamento prévio",
+      "Guardar vídeos e imagens em formato original",
+      "Análises específicas com dados já estruturados e filtrados",
+      "Substituir completamente os bancos de dados NoSQL"
+    ],
+    "correct": 2
+  },
+
   // ── TIPOS DE DADOS ──
   {
     "question": "Qual característica define os Dados Estruturados?",
@@ -527,6 +586,28 @@ const ALL_QUESTIONS = [
       "Dados em tabelas SQL com campos pré-definidos"
     ],
     "correct": 2
+  },
+
+  // ── TIPOS DE DADOS EXTRA ──
+  {
+    "question": "Uma apresentação de slides (PowerPoint) é classificada como qual tipo de dado?",
+    "options": ["Dado Estruturado", "Dado Semiestruturado", "Dado Não Estruturado", "Dado Relacional"],
+    "correct": 2
+  },
+  {
+    "question": "Qual tipo de dado é descrito como o 'meio-termo' entre estruturado e não estruturado?",
+    "options": ["Dado Relacional", "Dado Semiestruturado", "Dado Parcial", "Dado Híbrido"],
+    "correct": 1
+  },
+  {
+    "question": "Por que os Dados Semiestruturados são bons para integração de sistemas?",
+    "options": [
+      "Porque são idênticos às tabelas SQL",
+      "Porque não precisam de processamento algum",
+      "Porque são flexíveis — permitem adicionar novas informações sem quebrar a estrutura inteira",
+      "Porque são exclusivamente em formato binário"
+    ],
+    "correct": 2
   }
 ];
 
@@ -535,6 +616,7 @@ let mode = 'rapido', questionCount = 10;
 let deck = [], current = 0, answers = [];
 let timerInterval = null, timerLeft = 20;
 const TIMER_SEC = 20;
+let finishing = false; // Bug fix: guard against double finishQuiz calls
 
 function setMode(m) {
   mode = m;
@@ -561,6 +643,7 @@ function buildDeck() {
 }
 
 function startQuiz() {
+  finishing = false;
   buildDeck();
   answers = new Array(deck.length).fill(null);
   current = 0;
@@ -570,7 +653,7 @@ function startQuiz() {
 }
 
 function retryQuiz() { startQuiz(); }
-function goHome() { stopTimer(); showScreen('startScreen'); }
+function goHome() { stopTimer(); finishing = false; showScreen('startScreen'); }
 
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
@@ -618,7 +701,8 @@ function renderQ(i) {
   document.getElementById('qTotal').textContent = deck.length;
   document.getElementById('qTag').textContent = 'Questão '+(i+1);
   document.getElementById('qText').innerHTML = q.question;
-  document.getElementById('progFill').style.width = ((i/deck.length)*100)+'%';
+  // Bug fix: use (i+1)/deck.length so the bar reaches 100% on the last question
+  document.getElementById('progFill').style.width = (((i+1)/deck.length)*100)+'%';
   updateLiveScore(); updateAllDots();
 
   document.getElementById('opts').innerHTML = q.options.map((opt,j)=>{
@@ -631,7 +715,9 @@ function renderQ(i) {
         else if(j===q.correct){cls+=' correct';icon='✓';}
       }
     }
-    return `<div class="${cls}" id="opt${j}" onclick="pickAnswer(${i},${j})">
+    // Bug fix: don't attach onclick to locked options
+    const clickHandler = isAnswered ? '' : `onclick="pickAnswer(${i},${j})"`;
+    return `<div class="${cls}" id="opt${j}" ${clickHandler}>
       <div class="opt-key">${LETTERS[j]}</div>
       <div class="opt-label">${opt}</div>
       <div class="opt-check">${icon}</div>
@@ -650,10 +736,17 @@ function renderQ(i) {
   const nb = document.getElementById('btnNext');
   nb.textContent = isLast?'✓ Finalizar':'Próxima →';
   nb.className = 'btn '+(isLast?'btn-finish':'btn-next');
-  nb.onclick = isLast ? finishQuiz : ()=>nav(+1);
+  // Bug fix: always rebind onclick cleanly
+  nb.onclick = isLast ? ()=>finishQuiz() : ()=>nav(+1);
 
-  if(!isAnswered&&mode==='rapido') startTimer(i);
-  if(mode==='estudo') document.getElementById('timerVal').textContent='∞';
+  // Bug fix: show correct timer state for answered questions
+  const timerEl = document.getElementById('timerVal');
+  if(isAnswered || mode==='estudo'){
+    timerEl.textContent = '∞';
+    timerEl.className = 'timer-val';
+  } else {
+    startTimer(i);
+  }
 }
 
 function showFeedback(correct) {
@@ -669,6 +762,7 @@ function pickAnswer(qIdx, optIdx) {
   answers[qIdx] = { chosen:optIdx, correct:q.correct, skipped:false };
   document.querySelectorAll('.opt').forEach((el,j)=>{
     el.classList.add('locked');
+    el.removeAttribute('onclick'); // Bug fix: remove click handlers after answer
     if(j===optIdx&&j!==q.correct){ el.classList.add('wrong'); el.querySelector('.opt-check').textContent='✗'; el.querySelector('.opt-check').style.opacity=1; }
     if(j===q.correct){ el.classList.add('correct'); el.querySelector('.opt-check').textContent='✓'; el.querySelector('.opt-check').style.opacity=1; }
   });
@@ -685,6 +779,7 @@ function skipQuestion() {
   answers[i] = { chosen:null, correct:deck[i].correct, skipped:true };
   document.querySelectorAll('.opt').forEach((el,j)=>{
     el.classList.add('locked');
+    el.removeAttribute('onclick'); // Bug fix: remove click handlers after skip
     if(j===deck[i].correct){ el.classList.add('reveal'); el.querySelector('.opt-check').textContent='✓'; el.querySelector('.opt-check').style.opacity=1; }
   });
   const t = document.getElementById('feedbackToast');
@@ -716,6 +811,9 @@ function startTimer(qIdx) {
 function stopTimer(){ clearInterval(timerInterval); timerInterval=null; }
 
 function finishQuiz() {
+  // Bug fix: prevent double execution
+  if(finishing) return;
+  finishing = true;
   stopTimer();
   let ok=0,no=0,skipped=0;
   answers.forEach((a,i)=>{
